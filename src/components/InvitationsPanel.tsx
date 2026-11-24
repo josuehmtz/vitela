@@ -279,51 +279,53 @@ export default function InvitationsPanel({ eventId, eventTitle, rsvpDeadline, re
                         </span>
                       )}
                     </td>
-                    <td className="row-actions">
-                      <a className="button secondary small" href={`/i/${inv.token}`} target="_blank" rel="noreferrer">
-                        Ver
-                      </a>
-                      <button className="secondary small" onClick={() => copyLink(inv)}>
-                        {copiedId === inv.id ? '¡Copiado!' : 'Copiar link'}
-                      </button>
-                      {wa && (
-                        <a
-                          className="button secondary small"
-                          href={wa}
-                          target="_blank"
-                          rel="noreferrer"
-                          onClick={() => !inv.sentAt && !readOnly && sentFromRow.mutate(inv.id)}
-                        >
-                          {isReminder(inv) ? 'Recordar' : 'WhatsApp'}
+                    <td className="row-actions-cell">
+                      <div className="row-actions">
+                        <a className="button secondary small" href={`/i/${inv.token}`} target="_blank" rel="noreferrer">
+                          Ver
                         </a>
-                      )}
-                      {!readOnly && (
-                        <>
-                          <button className="secondary small" onClick={() => setRow({ id: inv.id, mode: 'rsvp' })}>
-                            Respuesta
-                          </button>
-                          <button className="secondary small" onClick={() => setRow({ id: inv.id, mode: 'edit' })}>
-                            Editar
-                          </button>
-                          <button
-                            className="danger small"
-                            disabled={remove.isPending}
-                            onClick={async () => {
-                              if (
-                                await confirm({
-                                  title: `¿Eliminar la invitación "${inv.displayName}"?`,
-                                  message: 'Su link y su QR dejarán de funcionar. No se puede deshacer.',
-                                  confirmLabel: 'Eliminar invitación',
-                                  danger: true,
-                                })
-                              )
-                                remove.mutate(inv.id)
-                            }}
+                        <button className="secondary small" onClick={() => copyLink(inv)}>
+                          {copiedId === inv.id ? '¡Copiado!' : 'Copiar link'}
+                        </button>
+                        {wa && (
+                          <a
+                            className="button secondary small"
+                            href={wa}
+                            target="_blank"
+                            rel="noreferrer"
+                            onClick={() => !inv.sentAt && !readOnly && sentFromRow.mutate(inv.id)}
                           >
-                            Eliminar
-                          </button>
-                        </>
-                      )}
+                            {isReminder(inv) ? 'Recordar' : 'WhatsApp'}
+                          </a>
+                        )}
+                        {!readOnly && (
+                          <>
+                            <button className="secondary small" onClick={() => setRow({ id: inv.id, mode: 'rsvp' })}>
+                              Respuesta
+                            </button>
+                            <button className="secondary small" onClick={() => setRow({ id: inv.id, mode: 'edit' })}>
+                              Editar
+                            </button>
+                            <button
+                              className="danger small"
+                              disabled={remove.isPending}
+                              onClick={async () => {
+                                if (
+                                  await confirm({
+                                    title: `¿Eliminar la invitación "${inv.displayName}"?`,
+                                    message: 'Su link y su QR dejarán de funcionar. No se puede deshacer.',
+                                    confirmLabel: 'Eliminar invitación',
+                                    danger: true,
+                                  })
+                                )
+                                  remove.mutate(inv.id)
+                              }}
+                            >
+                              Eliminar
+                            </button>
+                          </>
+                        )}
+                      </div>
                     </td>
                   </tr>
                 )
