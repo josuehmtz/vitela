@@ -40,6 +40,13 @@ export interface EventDetail extends EventSummary {
   isVenueStaff: boolean
   /** Correo del cliente vinculado (solo lo ve el salón). */
   clientEmail: string | null
+  /** Ceremonia en otro lugar que la recepción (iglesia, juzgado…). */
+  ceremonyName: string | null
+  ceremonyAddress: string | null
+  ceremonyMapsUrl: string | null
+  ceremonyStartsAt: string | null
+  /** Tipo de quien administra el evento por convenio (salón u organizador). */
+  managedByKind: 'Venue' | 'Planner' | null
 }
 
 export interface RsvpSummary {
@@ -60,6 +67,10 @@ export interface SaveEvent {
   venueAddress?: string | null
   mapsUrl?: string | null
   rsvpDeadline?: string | null
+  ceremonyName?: string | null
+  ceremonyAddress?: string | null
+  ceremonyMapsUrl?: string | null
+  ceremonyStartsAt?: string | null
 }
 
 export const getEvents = () => api<EventSummary[]>('/events')

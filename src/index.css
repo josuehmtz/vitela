@@ -386,10 +386,14 @@ td.phone { white-space: nowrap; }
   .hide-sm { display: none; }
   thead { display: none; }
   table, tbody, td { display: block; }
-  tr { display: grid; grid-template-columns: 1fr auto auto; gap: 6px 10px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); }
+  /* Nombre e invitados a todo lo ancho; abajo pases y estado; al final las acciones. */
+  tr { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px 12px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border); }
+  tr > td:first-child { grid-column: 1 / -1; }
+  tr > td:nth-child(n + 2) { min-width: 0; }
   td { border: 0; padding: 0; }
   td[colspan] { grid-column: 1 / -1; }
-  td.row-actions { grid-column: 1 / -1; justify-content: flex-start; flex-wrap: wrap; }
+  td.row-actions-cell { grid-column: 1 / -1; }
+  td.row-actions-cell .row-actions { justify-content: flex-start; }
 }
 .show-sm { display: none; }
 @media (max-width: 600px) { .show-sm { display: inline; } }
@@ -416,6 +420,8 @@ td.phone { white-space: nowrap; }
 .photo-grid-actions button { padding: 2px 8px; min-width: 0; }
 .toggle { display: flex !important; align-items: center; gap: 8px; cursor: pointer; }
 .toggle input { width: 18px; height: 18px; accent-color: var(--accent); }
+.ceremony-fields { margin: 0; padding: 14px 16px 16px; border: 1px solid var(--hairline); border-radius: var(--radius-sm); }
+.ceremony-fields legend { padding: 0 6px; font-weight: 600; font-size: 0.9rem; }
 
 .color-field { display: grid; justify-items: start; gap: 4px; font-size: 0.85rem; }
 .color-field input[type='color'] { width: 100%; height: 40px; padding: 2px; cursor: pointer; }

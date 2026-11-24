@@ -39,6 +39,7 @@ export default function InvitationView({ templateKey, config, event, guest, rsvp
     '--tpl-body': bodyFonts[templateKey],
   } as CSSProperties
 
+  const hasCeremony = Boolean(event.ceremonyName || event.ceremonyAddress)
   const hasPeople = sections.people && (config.people.parents.trim() || config.people.godparents.trim())
   const itinerary = config.itinerary.filter((i) => i.label.trim())
   const cover = photoUrl(photoBaseUrl, config.photos.cover)
@@ -107,15 +108,25 @@ export default function InvitationView({ templateKey, config, event, guest, rsvp
         </section>
       )}
 
-      {sections.venue && (event.venueName || event.venueAddress) && (
+      {sections.venue && (hasCeremony || event.venueName || event.venueAddress) && (
         <section className="tpl-section">
           <h2 className="tpl-title">¿Dónde?</h2>
-          {event.venueName && <p className="tpl-strong">{event.venueName}</p>}
-          {event.venueAddress && <p>{event.venueAddress}</p>}
-          {event.mapsUrl && (
-            <a className="tpl-button" href={event.mapsUrl} target="_blank" rel="noreferrer">
-              Ver ubicación
-            </a>
+          {hasCeremony ? (
+            // Ceremonia y recepción en lugares distintos: cada una con su dirección y su mapa.
+            <div className="tpl-places">
+              <Place
+                label="Ceremonia"
+                time={event.ceremonyStartsAt ? timeFmt.format(new Date(event.ceremonyStartsAt)) : null}
+                name={event.ceremonyName}
+                address={event.ceremonyAddress}
+                mapsUrl={event.ceremonyMapsUrl}
+              />
+              {(event.venueName || event.venueAddress) && (
+                <Place label="Recepción" name={event.venueName} address={event.venueAddress} mapsUrl={event.mapsUrl} />
+              )}
+            </div>
+          ) : (
+            <Place name={event.venueName} address={event.venueAddress} mapsUrl={event.mapsUrl} />
           )}
         </section>
       )}
@@ -311,3 +322,29 @@ function PapelPicado({ small }: { small?: boolean }) {
   )
 }
 
+/** Un lugar de la invitación (ceremonia o recepción) con su botón de mapa. */
+function Place({ label, time, name, address, mapsUrl }: {
+  label?: string
+  time?: string | null
+  name?: string | null
+  address?: string | null
+  mapsUrl?: string | null
+}) {
+  return (
+    <div className="tpl-place">
+      {label && (
+        <p className="tpl-place-label">
+          {label}
+          {time && <span> · {time}</span>}
+        </p>
+      )}
+      {name && <p className="tpl-strong">{name}</p>}
+      {address && <p>{address}</p>}
+      {mapsUrl && (
+        <a className="tpl-button" href={mapsUrl} target="_blank" rel="noreferrer">
+          Ver ubicación
+        </a>
+      )}
+    </div>
+  )
+}

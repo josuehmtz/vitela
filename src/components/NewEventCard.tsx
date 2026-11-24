@@ -58,7 +58,7 @@ export default function NewEventCard({ venue, onCancel }: Props) {
         <p className="muted small">
           {venue
             ? 'El paquete queda incluido por el convenio. Después podrás enviarle al cliente un link para que entre a su evento.'
-            : 'Elige tu paquete según el número de invitados. Al completar el pago se desbloquean el diseño, los invitados y las mesas.'}
+            : 'Elige tu paquete según el número de invitados. Puedes diseñar tu invitación desde ya; al completar el pago se desbloquean los invitados, las mesas y el acceso de hostess.'}
         </p>
       </div>
 

@@ -98,7 +98,7 @@ export default function DashboardPage() {
       {events.data?.length === 0 && !creating && isVenueStaff && (
         <section className="empty-state card">
           <Seal size={72} />
-          <h2>Aún no hay eventos del salón</h2>
+          <h2>Aún no hay eventos por convenio</h2>
           <p className="muted">Da de alta el primer evento con el paquete que contrató tu cliente.</p>
         </section>
       )}

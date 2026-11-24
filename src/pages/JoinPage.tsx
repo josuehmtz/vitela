@@ -35,8 +35,10 @@ export default function JoinPage() {
             <h1>{info.data.kind === 'EventOwner' ? info.data.name : `Únete a ${info.data.name}`}</h1>
             <p className="muted">
               {info.data.kind === 'EventOwner'
-                ? 'Tu salón te dio acceso a tu evento. Al aceptar, quedará ligado a esta cuenta para que diseñes tu invitación, cargues a tus invitados y acomodes las mesas.'
-                : 'Te invitaron a formar parte del personal del salón: podrás dar de alta eventos por convenio y administrarlos.'}
+                ? `${info.data.partnerKind === 'Planner' ? 'Tu organizador de eventos' : 'Tu salón'} te dio acceso a tu evento. Al aceptar, quedará ligado a esta cuenta para que diseñes tu invitación, cargues a tus invitados y acomodes las mesas.`
+                : info.data.partnerKind === 'Planner'
+                  ? 'Te invitaron a formar parte del equipo del organizador: podrás dar de alta eventos por convenio y administrarlos.'
+                  : 'Te invitaron a formar parte del personal del salón: podrás dar de alta eventos por convenio y administrarlos.'}
             </p>
             {info.data.problem ? (
               <p className="notice notice-error">{info.data.problem}</p>
