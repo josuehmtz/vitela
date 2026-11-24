@@ -3,7 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router'
 import { acceptAccessLink, getAccessLink } from '../api/venues'
 import { Seal } from '../components/brand/Logo'
 
-/** Link que comparte un salón (cliente de un evento) o Lacre (personal de un salón) para vincular la cuenta. */
+/** Link que comparte un salón (cliente de un evento) o Vitela (personal de un salón) para vincular la cuenta. */
 export default function JoinPage() {
   const { token = '' } = useParams()
   const navigate = useNavigate()

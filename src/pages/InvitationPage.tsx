@@ -1,5 +1,5 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query'
-import { useEffect } from 'react'
+import { useEffect, type CSSProperties } from 'react'
 import { useParams } from 'react-router'
 import { ApiError } from '../api/client'
 import { getPublicInvitation } from '../api/public'
@@ -42,7 +42,11 @@ export default function InvitationPage() {
   const config = resolveConfig(key, event, event.templateConfig)
 
   return (
-    <div className="public-invitation">
+    <div
+      className="public-invitation"
+      // Colores de la invitación también en el fondo que la rodea (tarjeta en pantallas grandes).
+      style={{ '--tpl-bg': config.colors.background, '--tpl-primary': config.colors.primary } as CSSProperties}
+    >
       {guest.isPreview && (
         <div className="preview-banner">Vista previa · Esta invitación aún no está publicada</div>
       )}
@@ -52,6 +56,7 @@ export default function InvitationPage() {
         event={event}
         guest={guest}
         photoBaseUrl={event.photoBaseUrl}
+        rsvpAnswered={guest.rsvpStatus !== 'Pending'}
         rsvpSlot={
           <RsvpPanel
             token={token}

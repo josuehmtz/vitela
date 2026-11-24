@@ -35,6 +35,8 @@ export interface Billing {
   managedBy: string | null
   /** Si quien consulta es personal del salón con convenio vigente: puede cambiar el paquete sin pago en línea. */
   agreementVenue: string | null
+  /** El evento tiene un paquete a la medida (lo pone un administrador). */
+  customLimit: boolean
 }
 
 export const getBilling = (eventId: string) => api<Billing>(`/events/${eventId}/billing`)

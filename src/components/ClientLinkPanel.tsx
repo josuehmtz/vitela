@@ -34,7 +34,7 @@ export default function ClientLinkPanel({ eventId, eventTitle, managedBy, client
     )
 
   const url = created ? joinUrl(created.token) : ''
-  const message = `¡Hola! Ya puedes entrar a tu evento "${eventTitle}" en Lacre para diseñar tu invitación, cargar a tus invitados y acomodar las mesas: ${url}`
+  const message = `¡Hola! Ya puedes entrar a tu evento "${eventTitle}" en Vitela para diseñar tu invitación, cargar a tus invitados y acomodar las mesas: ${url}`
 
   return (
     <section className="card">

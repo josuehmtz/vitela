@@ -2,26 +2,24 @@
 .auth { min-height: 100vh; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); }
 
 .auth-aside {
-  position: relative; overflow: hidden; color: #f4ece2;
+  position: relative; overflow: hidden; color: var(--text);
   padding: 36px 48px; display: grid; grid-template-rows: auto 1fr;
-  background: linear-gradient(165deg, #2a1f2e 0%, #160f18 60%, #0f0b11 100%);
+  background: var(--bg) var(--grain); border-right: 1px solid var(--hairline);
 }
-.auth-aside-glow {
-  position: absolute; inset: 0; pointer-events: none;
-  background:
-    radial-gradient(circle at 15% 10%, rgb(214 178 122 / 0.22), transparent 45%),
-    radial-gradient(circle at 85% 90%, rgb(184 64 79 / 0.28), transparent 50%);
-}
-.auth-aside-logo { position: relative; color: #f4ece2; text-decoration: none; }
-.auth-aside-logo .logo { color: #f4ece2; }
-.auth-aside-body { position: relative; align-self: center; display: grid; gap: 26px; justify-items: start; }
-.auth-seal { filter: drop-shadow(0 14px 24px rgb(0 0 0 / 0.45)); --seal: #b8404f; --seal-light: #d65d6c; --seal-dark: #7c2532; }
+.auth-aside-logo { position: relative; color: var(--text); text-decoration: none; }
+.auth-aside-logo .logo { color: var(--text); }
+.auth-aside-body { position: relative; align-self: center; display: grid; gap: 30px; justify-items: start; }
+/* Dos cartas pequeñas; el selector es más específico que la regla general de las cartas (width: 100%). */
+.auth-cards { display: flex; }
+.auth-cards svg.loteria { width: clamp(96px, 9vw, 128px); flex: none; }
+.auth-cards svg.loteria:last-child { margin-left: -14px; translate: 0 10px; }
 .auth-aside blockquote {
-  margin: 0; font-family: var(--font-display); font-style: italic; font-weight: 500;
-  font-size: clamp(2rem, 3.2vw, 2.8rem); line-height: 1.15;
+  margin: 0; font-family: var(--font-display); font-style: italic; font-weight: 600;
+  font-size: clamp(2rem, 3.2vw, 2.8rem); line-height: 1.12;
 }
-.auth-aside ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; color: #cbbfc6; }
-.auth-aside li::before { content: '✦'; color: #d6b27a; margin-right: 10px; font-size: 0.8rem; }
+.auth-aside ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; color: var(--text-muted); }
+.auth-aside li { display: flex; gap: 12px; align-items: baseline; }
+.auth-aside li::before { content: ''; flex: none; width: 7px; height: 7px; background: var(--accent); rotate: 45deg; translate: 0 -2px; }
 
 .auth-main { display: grid; grid-template-rows: auto 1fr; padding: 24px; background: var(--bg); }
 .auth-top { display: flex; justify-content: flex-end; align-items: center; gap: 12px; }

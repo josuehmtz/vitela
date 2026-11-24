@@ -71,8 +71,8 @@ export default function DashboardPage() {
       {pendingPayment && !creating && (
         <p className="notice notice-info">
           <strong>{pendingPayment.title}</strong> tiene el pago pendiente.{' '}
-          <Link to={`/app/events/${pendingPayment.id}`}>Completa tu pago</Link> para empezar a diseñar tu invitación y
-          cargar a tus invitados.
+          Ya puedes <Link to={`/app/events/${pendingPayment.id}/design`}>diseñar tu invitación</Link>;{' '}
+          <Link to={`/app/events/${pendingPayment.id}`}>completa tu pago</Link> para cargar a tus invitados.
         </p>
       )}
 

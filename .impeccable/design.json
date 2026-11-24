@@ -1,0 +1,681 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-24T06:03:49.162Z",
+  "title": "Design System: Vitela",
+  "extensions": {
+    "colorMeta": {
+      "carmin": {
+        "role": "primary",
+        "displayName": "Carmín",
+        "canonical": "#a3262a",
+        "tonalRamp": [
+          "#140706",
+          "#431212",
+          "#781a1d",
+          "#aa2d30",
+          "#d15350",
+          "#eb837d",
+          "#f7b7b1",
+          "#ffe9e7"
+        ]
+      },
+      "carmin-deep": {
+        "role": "primary",
+        "displayName": "Carmín Hondo",
+        "canonical": "#861b1f",
+        "tonalRamp": [
+          "#130807",
+          "#401514",
+          "#722222",
+          "#a23836",
+          "#c95b56",
+          "#e38882",
+          "#f2b9b4",
+          "#fde9e7"
+        ]
+      },
+      "on-carmin": {
+        "role": "primary",
+        "displayName": "Blanco sobre Carmín",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "foil": {
+        "role": "secondary",
+        "displayName": "Foil Champagne",
+        "canonical": "#c9a45c",
+        "tonalRamp": [
+          "#0e0b05",
+          "#302306",
+          "#573d00",
+          "#7d5b02",
+          "#a07c33",
+          "#bea16a",
+          "#d8c7a7",
+          "#f3eee3"
+        ]
+      },
+      "foil-light": {
+        "role": "secondary",
+        "displayName": "Foil Claro",
+        "canonical": "#ead3a0",
+        "tonalRamp": [
+          "#0d0b06",
+          "#2c2411",
+          "#4f401c",
+          "#735e2e",
+          "#95804f",
+          "#b5a37d",
+          "#d3c8b1",
+          "#f2eee7"
+        ]
+      },
+      "foil-deep": {
+        "role": "secondary",
+        "displayName": "Foil Hondo",
+        "canonical": "#9c7a37",
+        "tonalRamp": [
+          "#0e0b05",
+          "#302308",
+          "#563d04",
+          "#7c5b11",
+          "#9f7c3a",
+          "#bda16e",
+          "#d8c7a9",
+          "#f3eee4"
+        ]
+      },
+      "gold-day": {
+        "role": "secondary",
+        "displayName": "Oro de Día",
+        "canonical": "#9c7a2b",
+        "tonalRamp": [
+          "#0e0b05",
+          "#302304",
+          "#563d00",
+          "#7c5b00",
+          "#9f7d2e",
+          "#bda167",
+          "#d8c7a6",
+          "#f3eee3"
+        ]
+      },
+      "gold-day-text": {
+        "role": "secondary",
+        "displayName": "Oro de Texto",
+        "canonical": "#7d6020",
+        "tonalRamp": [
+          "#0e0b05",
+          "#2f230b",
+          "#543e0c",
+          "#795c1b",
+          "#9c7e40",
+          "#baa272",
+          "#d6c7ab",
+          "#f3eee5"
+        ]
+      },
+      "logo-v-day": {
+        "role": "secondary",
+        "displayName": "Oro del Logo",
+        "canonical": "#a8842f",
+        "tonalRamp": [
+          "#0e0b04",
+          "#302302",
+          "#573d00",
+          "#7d5b00",
+          "#a07c26",
+          "#bea163",
+          "#d9c7a3",
+          "#f3eee2"
+        ]
+      },
+      "gold-night-strong": {
+        "role": "secondary",
+        "displayName": "Oro de Noche Fuerte",
+        "canonical": "#dcbd7e",
+        "tonalRamp": [
+          "#0e0b05",
+          "#2e230b",
+          "#533e0c",
+          "#795c1b",
+          "#9b7e40",
+          "#baa272",
+          "#d6c8ab",
+          "#f3eee5"
+        ]
+      },
+      "azul-tinta": {
+        "role": "tertiary",
+        "displayName": "Azul Tinta",
+        "canonical": "#1f3a6b",
+        "tonalRamp": [
+          "#080b11",
+          "#19253a",
+          "#2c4169",
+          "#436195",
+          "#6382b9",
+          "#8ca6d3",
+          "#bacae6",
+          "#e9eff8"
+        ]
+      },
+      "verde-botella": {
+        "role": "tertiary",
+        "displayName": "Verde Botella",
+        "canonical": "#2f5d46",
+        "tonalRamp": [
+          "#080c0a",
+          "#182a20",
+          "#284a39",
+          "#3e6d55",
+          "#608f75",
+          "#8aaf9a",
+          "#b9d0c3",
+          "#e9f1ec"
+        ]
+      },
+      "mostaza": {
+        "role": "tertiary",
+        "displayName": "Mostaza",
+        "canonical": "#d9a62e",
+        "tonalRamp": [
+          "#0f0a03",
+          "#342100",
+          "#5e3a00",
+          "#865700",
+          "#aa7900",
+          "#c69f4b",
+          "#dec698",
+          "#f5eedf"
+        ]
+      },
+      "frijol": {
+        "role": "tertiary",
+        "displayName": "Frijol",
+        "canonical": "#5a2a1c",
+        "tonalRamp": [
+          "#0f0a08",
+          "#341f19",
+          "#5d362b",
+          "#865242",
+          "#aa7362",
+          "#c7998b",
+          "#dfc2b9",
+          "#f6ece9"
+        ]
+      },
+      "frijol-brillo": {
+        "role": "tertiary",
+        "displayName": "Brillo de Frijol",
+        "canonical": "#e9d8c8",
+        "tonalRamp": [
+          "#0c0b09",
+          "#2a241e",
+          "#4b4035",
+          "#6d5e50",
+          "#8f7f71",
+          "#afa396",
+          "#cfc8c0",
+          "#f0eeeb"
+        ]
+      },
+      "ivory": {
+        "role": "neutral",
+        "displayName": "Marfil",
+        "canonical": "#f5efe4",
+        "tonalRamp": [
+          "#0c0b0a",
+          "#272521",
+          "#45413a",
+          "#666157",
+          "#878278",
+          "#a9a49c",
+          "#cbc9c4",
+          "#efeeed"
+        ]
+      },
+      "ivory-hi": {
+        "role": "neutral",
+        "displayName": "Marfil Alto",
+        "canonical": "#fbf7f0",
+        "tonalRamp": [
+          "#0b0b0a",
+          "#262522",
+          "#44423d",
+          "#64615b",
+          "#85827c",
+          "#a8a59f",
+          "#cbc9c6",
+          "#efeeed"
+        ]
+      },
+      "ivory-deep": {
+        "role": "neutral",
+        "displayName": "Marfil Hondo",
+        "canonical": "#efe7d9",
+        "tonalRamp": [
+          "#0c0b0a",
+          "#272520",
+          "#464138",
+          "#676054",
+          "#898175",
+          "#aaa49a",
+          "#ccc9c2",
+          "#efeeec"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Tinta",
+        "canonical": "#1a1614",
+        "tonalRamp": [
+          "#0c0b0b",
+          "#272524",
+          "#45413f",
+          "#65605d",
+          "#86817e",
+          "#a8a4a2",
+          "#cbc8c7",
+          "#efeeee"
+        ]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Tinta Suave",
+        "canonical": "#5c524a",
+        "tonalRamp": [
+          "#0c0b0a",
+          "#282421",
+          "#48403a",
+          "#695f57",
+          "#8b8077",
+          "#aca39c",
+          "#cdc8c4",
+          "#f0eeed"
+        ]
+      },
+      "night-surface": {
+        "role": "neutral",
+        "displayName": "Salón",
+        "canonical": "#241f1c",
+        "tonalRamp": [
+          "#0c0b0b",
+          "#272423",
+          "#45413e",
+          "#66605c",
+          "#87817d",
+          "#a9a4a1",
+          "#ccc8c6",
+          "#efeeed"
+        ]
+      },
+      "night-surface-2": {
+        "role": "neutral",
+        "displayName": "Salón Alto",
+        "canonical": "#2d2724",
+        "tonalRamp": [
+          "#0c0b0b",
+          "#272423",
+          "#46413e",
+          "#67605c",
+          "#88817d",
+          "#aaa4a0",
+          "#ccc8c6",
+          "#efeeed"
+        ]
+      },
+      "night-muted": {
+        "role": "neutral",
+        "displayName": "Humo",
+        "canonical": "#b8afa3",
+        "tonalRamp": [
+          "#0c0b0a",
+          "#282420",
+          "#474139",
+          "#686055",
+          "#898176",
+          "#aba49a",
+          "#cdc8c3",
+          "#f0eeec"
+        ]
+      },
+      "seal-night": {
+        "role": "tertiary",
+        "displayName": "Azul de Noche",
+        "canonical": "#8fa9d8",
+        "tonalRamp": [
+          "#090b10",
+          "#1c2536",
+          "#314262",
+          "#4a618c",
+          "#6a83af",
+          "#91a6cb",
+          "#bdcae1",
+          "#eaeff6"
+        ]
+      },
+      "ok-night": {
+        "role": "tertiary",
+        "displayName": "Verde de Noche",
+        "canonical": "#7cc29b",
+        "tonalRamp": [
+          "#070d09",
+          "#102b1d",
+          "#184d34",
+          "#2a714e",
+          "#4e936e",
+          "#7eb395",
+          "#b3d2bf",
+          "#e7f1eb"
+        ]
+      },
+      "warn-day": {
+        "role": "tertiary",
+        "displayName": "Ámbar de Aviso",
+        "canonical": "#b98710",
+        "tonalRamp": [
+          "#0f0a03",
+          "#342100",
+          "#5d3a00",
+          "#865600",
+          "#aa7800",
+          "#c69e53",
+          "#dec69c",
+          "#f5ede0"
+        ]
+      },
+      "error-night": {
+        "role": "tertiary",
+        "displayName": "Coral de Noche",
+        "canonical": "#f08a7e",
+        "tonalRamp": [
+          "#120807",
+          "#3d1814",
+          "#6e2822",
+          "#9c3f37",
+          "#c26157",
+          "#dd8c82",
+          "#eebbb4",
+          "#fbeae8"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero heading; its emphasized phrase is italic 600 in gold-day."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Home band titles, max 18ch, balanced."
+      },
+      "accent-italic": {
+        "displayName": "Accent Italic",
+        "purpose": "Hero emphasis, finale \"¡Lotería!\", auth quote, tabla verses."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Panel headings (h1 2.2rem, h2 1.55rem, h3 1.2rem; page headers 2.4rem)."
+      },
+      "card-caption": {
+        "displayName": "Card Caption",
+        "purpose": "Uppercase card name box; SVG caption steps 10px to 8px for long names."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Interface text in Hanken Grotesk; leads 1.1–1.13rem muted, max 46–62ch."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Buttons; form labels 500 at 0.875rem."
+      }
+    },
+    "shadows": [
+      {
+        "name": "card-rest",
+        "value": "drop-shadow(0 10px 16px rgb(60 40 20 / 0.12)) drop-shadow(0 2px 3px rgb(60 40 20 / 0.1))",
+        "purpose": "Lotería and paper cards at rest, light mode (filter)."
+      },
+      {
+        "name": "card-rest-night",
+        "value": "drop-shadow(0 16px 24px rgb(0 0 0 / 0.55)) drop-shadow(0 3px 4px rgb(0 0 0 / 0.35))",
+        "purpose": "Cards at rest, night mode (filter)."
+      },
+      {
+        "name": "card-lift",
+        "value": "drop-shadow(0 22px 26px rgb(60 40 20 / 0.18)) drop-shadow(0 3px 4px rgb(60 40 20 / 0.1))",
+        "purpose": "Card hover/touch lift, light mode, with translate -8px and tilt -3deg."
+      },
+      {
+        "name": "card-lift-night",
+        "value": "drop-shadow(0 28px 34px rgb(0 0 0 / 0.6)) drop-shadow(0 4px 6px rgb(0 0 0 / 0.35))",
+        "purpose": "Card lift, night mode."
+      },
+      {
+        "name": "card-halo-night",
+        "value": "rgb(201 164 92 / 0.25)",
+        "purpose": "Night-only 1.2px gold edge that separates ivory cards from the salon."
+      },
+      {
+        "name": "panel-sm",
+        "value": "0 1px 2px rgb(60 40 20 / 0.06), 0 2px 10px rgb(60 40 20 / 0.05)",
+        "purpose": "Panel cards and Google button (night: 0 1px 2px rgb(0 0 0 / .3), 0 2px 10px rgb(0 0 0 / .2))."
+      },
+      {
+        "name": "panel-raised",
+        "value": "0 18px 44px -14px rgb(60 40 20 / 0.22)",
+        "purpose": "Dialogs and hovered event cards (night: 0 18px 50px -12px rgb(0 0 0 / .6))."
+      },
+      {
+        "name": "glass",
+        "value": "background: rgb(245 239 228 / 0.88); backdrop-filter: saturate(1.3) blur(12px)",
+        "purpose": "Sticky site header and panel topbar (night base rgb(26 22 20 / .88))."
+      },
+      {
+        "name": "focus-ring",
+        "value": "outline: 2px solid var(--accent); outline-offset: 2px / inputs: 0 0 0 4px var(--accent-soft)",
+        "purpose": "Keyboard focus on buttons, links and fields."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Card lift, tilt, deal-in, frijol drop, FAQ plus rotation."
+      },
+      {
+        "name": "card-lift",
+        "value": "0.35s",
+        "purpose": "Rotate/translate/filter transition on cards."
+      },
+      {
+        "name": "deal",
+        "value": "0.85s, stagger 160ms + 120ms",
+        "purpose": "Hero cards dealt in one by one from the left (-60px, 30px, -9deg)."
+      },
+      {
+        "name": "ink-fill",
+        "value": "0.8s ease",
+        "purpose": "Pending Palomita card fills with color on confirmation."
+      },
+      {
+        "name": "frijol-drop",
+        "value": "0.55s",
+        "purpose": "Bean drops onto a called tabla card."
+      },
+      {
+        "name": "theme-fade",
+        "value": "200ms ease",
+        "purpose": "Background, color and border cross-fade on mode change; off under reduced motion."
+      },
+      {
+        "name": "state",
+        "value": "0.15s",
+        "purpose": "Buttons and fields."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "xs",
+        "value": "480px"
+      },
+      {
+        "name": "sm",
+        "value": "600px"
+      },
+      {
+        "name": "faq",
+        "value": "860px"
+      },
+      {
+        "name": "md",
+        "value": "900px"
+      },
+      {
+        "name": "hero",
+        "value": "980px"
+      },
+      {
+        "name": "tabla",
+        "value": "1000px"
+      },
+      {
+        "name": "designs",
+        "value": "1100px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Carmín ticket button, the one action color in both modes.",
+      "html": "<button class=\"ds-btn-primary\">Crea tu invitación</button>",
+      "css": ".ds-btn-primary { font-family: 'Hanken Grotesk', system-ui, sans-serif; font-size: 0.925rem; font-weight: 600; line-height: 1.45; padding: 9px 18px; border: 1px solid transparent; border-radius: 6px; background: var(--primary, #a3262a); color: #fff; cursor: pointer; transition: background 0.15s, transform 0.15s; } .ds-btn-primary:hover { background: var(--primary-strong, #861b1f); } .ds-btn-primary:active { transform: translateY(1px); } .ds-btn-primary:focus-visible { outline: 2px solid var(--accent, #9c7a2b); outline-offset: 2px; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Outlined ticket button for secondary actions.",
+      "html": "<button class=\"ds-btn-secondary\">Ver diseños</button>",
+      "css": ".ds-btn-secondary { font-family: 'Hanken Grotesk', system-ui, sans-serif; font-size: 0.925rem; font-weight: 600; padding: 9px 18px; border-radius: 6px; background: transparent; color: var(--text, #1a1614); border: 1px solid var(--border, rgb(26 22 20 / 0.85)); cursor: pointer; transition: background 0.15s, border-color 0.15s; } .ds-btn-secondary:hover { background: var(--surface-2, #efe7d9); border-color: color-mix(in srgb, var(--accent, #9c7a2b) 50%, var(--border, #1a1614)); } .ds-btn-secondary:focus-visible { outline: 2px solid var(--accent, #9c7a2b); outline-offset: 2px; }"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Paper field with gold focus ring.",
+      "html": "<label class=\"ds-field\">Nombre del evento<input class=\"ds-input\" placeholder=\"Boda de Ana y Luis\"></label>",
+      "css": ".ds-field { display: grid; gap: 6px; font-family: 'Hanken Grotesk', system-ui, sans-serif; font-size: 0.875rem; font-weight: 500; color: var(--text, #1a1614); } .ds-input { font: inherit; font-size: 0.95rem; font-weight: 400; padding: 10px 12px; color: inherit; background: var(--surface, #fbf7f0); border: 1px solid var(--border, rgb(26 22 20 / 0.85)); border-radius: 8px; transition: border-color 0.15s, box-shadow 0.15s; } .ds-input:hover { border-color: color-mix(in srgb, var(--accent, #9c7a2b) 45%, var(--border, #1a1614)); } .ds-input:focus-visible { outline: none; border-color: var(--accent, #9c7a2b); box-shadow: 0 0 0 4px var(--accent-soft, rgb(168 132 47 / 0.14)); }"
+    },
+    {
+      "name": "Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Round filter chip; selected fills soft gold.",
+      "html": "<div class=\"ds-chips\"><button class=\"ds-chip ds-chip-on\">Confirmados</button><button class=\"ds-chip\">Pendientes</button></div>",
+      "css": ".ds-chips { display: flex; gap: 6px; } .ds-chip { font-family: 'Hanken Grotesk', system-ui, sans-serif; font-size: 0.85rem; padding: 4px 12px; border-radius: 999px; background: transparent; color: var(--text, #1a1614); border: 1px solid var(--border, rgb(26 22 20 / 0.85)); cursor: pointer; } .ds-chip:hover { border-color: var(--accent, #9c7a2b); } .ds-chip-on { background: var(--accent-soft, rgb(168 132 47 / 0.14)); border-color: var(--accent, #9c7a2b); } .ds-chip:focus-visible { outline: 2px solid var(--accent, #9c7a2b); outline-offset: 2px; }"
+    },
+    {
+      "name": "Site Navigation",
+      "kind": "nav",
+      "refersTo": "site-header",
+      "description": "Sticky glass header with logo card, muted links and login.",
+      "html": "<header class=\"ds-nav\"><a class=\"ds-logo\" href=\"#\"><svg width=\"25\" height=\"34\" viewBox=\"0 0 26 36\"><rect x=\"0.7\" y=\"0.7\" width=\"24.6\" height=\"34.6\" rx=\"2.4\" fill=\"#f5efe4\" stroke=\"#1a1614\" stroke-width=\"1.2\"/><rect x=\"2.6\" y=\"2.6\" width=\"20.8\" height=\"30.8\" rx=\"1\" fill=\"none\" stroke=\"#c9a45c\" stroke-width=\"0.9\"/><rect x=\"2.6\" y=\"2.6\" width=\"8.4\" height=\"8.4\" fill=\"#f5efe4\" stroke=\"#1a1614\" stroke-width=\"0.8\"/><text x=\"6.8\" y=\"9.4\" text-anchor=\"middle\" font-family=\"Bodoni Moda, Georgia, serif\" font-size=\"7.4\" font-weight=\"800\" fill=\"#1a1614\">1</text><path d=\"M8.6 13.2 L13.6 29.4 L18.6 13.2\" fill=\"none\" stroke=\"#a8842f\" stroke-width=\"0.95\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg><span>Vitela</span></a><nav class=\"ds-links\"><a href=\"#\">Incluye</a><a href=\"#\">Diseños</a><a href=\"#\">Precios</a></nav><a class=\"ds-login\" href=\"#\">Entrar</a></header>",
+      "css": ".ds-nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 20px; background: rgb(245 239 228 / 0.88); backdrop-filter: saturate(1.3) blur(12px); border-bottom: 1px solid rgb(26 22 20 / 0.14); font-family: 'Hanken Grotesk', system-ui, sans-serif; } .ds-logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: #1a1614; font-family: 'Bodoni Moda', Georgia, serif; font-size: 1.6rem; font-weight: 800; line-height: 1; } .ds-links { display: flex; gap: 28px; } .ds-links a { color: #5c524a; text-decoration: none; font-size: 0.92rem; font-weight: 500; } .ds-links a:hover { color: #1a1614; } .ds-login { color: #1a1614; text-decoration: none; font-size: 0.92rem; font-weight: 600; padding: 10px 6px; text-underline-offset: 5px; } .ds-login:hover { text-decoration: underline; } .ds-nav a:focus-visible { outline: 2px solid #9c7a2b; outline-offset: 2px; }"
+    },
+    {
+      "name": "Panel Card",
+      "kind": "card",
+      "refersTo": "panel-card",
+      "description": "Panel container on paper surface.",
+      "html": "<section class=\"ds-panel\"><h2>Invitaciones</h2><p>Tienes 120 de 250 pases asignados.</p><div class=\"ds-meter\"><div style=\"width:48%\"></div></div></section>",
+      "css": ".ds-panel { display: grid; gap: 14px; padding: 20px; background: var(--surface, #fbf7f0); border: 1px solid var(--border, rgb(26 22 20 / 0.85)); border-radius: 14px; box-shadow: 0 1px 2px rgb(60 40 20 / 0.06), 0 2px 10px rgb(60 40 20 / 0.05); color: var(--text, #1a1614); font-family: 'Hanken Grotesk', system-ui, sans-serif; } .ds-panel h2 { margin: 0; font-family: 'Bodoni Moda', Georgia, serif; font-size: 1.6rem; font-weight: 600; line-height: 1.15; } .ds-panel p { margin: 0; } .ds-meter { height: 8px; border-radius: 999px; background: rgb(92 82 74 / 0.12); overflow: hidden; } .ds-meter div { height: 100%; background: var(--accent, #9c7a2b); border-radius: 999px; }"
+    },
+    {
+      "name": "Paper Card",
+      "kind": "card",
+      "refersTo": "paper-card",
+      "description": "HTML lotería card: ivory paper, ink edge, foil frame, number and caption boxes, hand tilt and lift.",
+      "html": "<article class=\"ds-paper\" style=\"--tilt:-1deg\"><span class=\"ds-paper-num\">15</span><div class=\"ds-paper-face\"><p class=\"ds-paper-n\">100</p><p>invitados</p><p class=\"ds-paper-price\">$890 <span>MXN</span></p></div><span class=\"ds-paper-cap\">El Pase</span></article>",
+      "css": ".ds-paper { position: relative; width: 220px; padding: 10px; border-radius: 5px; background: #f5efe4; color: #1a1614; border: 1px solid #1a1614; rotate: var(--tilt, 0deg); filter: drop-shadow(0 10px 16px rgb(60 40 20 / 0.12)) drop-shadow(0 2px 3px rgb(60 40 20 / 0.1)); transition: rotate 0.35s cubic-bezier(0.16, 1, 0.3, 1), translate 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease; font-family: 'Hanken Grotesk', system-ui, sans-serif; } .ds-paper::before { content: ''; position: absolute; inset: 4px; pointer-events: none; z-index: 1; border: 2px solid transparent; border-image: linear-gradient(135deg, var(--foil-light, #ead3a0), var(--foil, #c9a45c) 45%, var(--foil-light, #ead3a0) 70%, var(--foil-deep, #9c7a37)) 1; } .ds-paper:hover { translate: 0 -8px; rotate: calc(var(--tilt, 0deg) - 3deg); filter: drop-shadow(0 22px 26px rgb(60 40 20 / 0.18)) drop-shadow(0 3px 4px rgb(60 40 20 / 0.1)); } .ds-paper-num { position: absolute; z-index: 2; top: 10px; left: 10px; min-width: 34px; height: 26px; padding-inline: 6px; display: grid; place-items: center; background: #f5efe4; border: 1px solid #1a1614; font-family: 'Bodoni Moda', Georgia, serif; font-size: 0.95rem; font-weight: 700; } .ds-paper-face { position: relative; z-index: 2; padding: 48px 22px 22px; background: #fbf7f0; border: 1px solid #1a1614; display: grid; gap: 6px; } .ds-paper-face p { margin: 0; color: #5c524a; font-weight: 600; } .ds-paper-n { font-family: 'Bodoni Moda', Georgia, serif; font-size: 3.4rem; font-weight: 900; line-height: 0.9; color: #1a1614 !important; } .ds-paper-price { font-family: 'Bodoni Moda', Georgia, serif; font-size: 1.9rem; font-weight: 800 !important; color: #1a1614 !important; } .ds-paper-price span { font-family: 'Hanken Grotesk', sans-serif; font-size: 0.85rem; color: #5c524a; } .ds-paper-cap { position: relative; z-index: 2; display: block; margin-top: 8px; padding: 6px 10px; text-align: center; background: #f5efe4; border: 1px solid #1a1614; font-family: 'Bodoni Moda', Georgia, serif; font-size: 1rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; } @media (prefers-reduced-motion: reduce) { .ds-paper { transition: none; } }"
+    },
+    {
+      "name": "Lotería Card",
+      "kind": "custom",
+      "refersTo": "loteria-card",
+      "description": "Signature SVG card (100 x 150): paper, ink edge, foil frame, ink ground, flat drawing, number and caption.",
+      "html": "<svg class=\"ds-loteria\" viewBox=\"0 0 100 150\" role=\"img\" aria-label=\"La Campana, carta 8\" style=\"--tilt:1deg\"><defs><linearGradient id=\"dsfoil\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#ead3a0\"/><stop offset=\"0.45\" stop-color=\"#c9a45c\"/><stop offset=\"0.7\" stop-color=\"#ead3a0\"/><stop offset=\"1\" stop-color=\"#9c7a37\"/></linearGradient></defs><rect x=\"1.4\" y=\"1.4\" width=\"97.2\" height=\"147.2\" rx=\"4\" fill=\"#f5efe4\" stroke=\"#1a1614\" stroke-width=\"1.1\"/><rect x=\"4.6\" y=\"4.6\" width=\"90.8\" height=\"140.8\" rx=\"1.6\" fill=\"none\" stroke=\"url(#dsfoil)\" stroke-width=\"2\"/><rect x=\"9\" y=\"9\" width=\"82\" height=\"110\" fill=\"#1f3a6b\" stroke=\"#1a1614\" stroke-width=\"1.1\"/><g transform=\"translate(9.6 25.6) scale(0.962)\"><path d=\"M42 14 C 28 14, 24 26, 24 40 C 24 54, 20 60, 14 66 H70 C 64 60, 60 54, 60 40 C 60 26, 56 14, 42 14 Z\" fill=\"#d9a62e\" stroke=\"#1a1614\" stroke-width=\"2.2\" stroke-linejoin=\"round\"/><rect x=\"12\" y=\"65\" width=\"60\" height=\"6\" rx=\"3\" fill=\"#d9a62e\" stroke=\"#1a1614\" stroke-width=\"2.2\"/><circle cx=\"42\" cy=\"77\" r=\"5.5\" fill=\"#1a1614\"/></g><rect x=\"9\" y=\"9\" width=\"19\" height=\"14.5\" fill=\"#f5efe4\" stroke=\"#1a1614\" stroke-width=\"1.1\"/><text x=\"18.5\" y=\"20\" text-anchor=\"middle\" font-family=\"Bodoni Moda, Georgia, serif\" font-size=\"10.5\" font-weight=\"700\" fill=\"#1a1614\">8</text><rect x=\"9\" y=\"123.5\" width=\"82\" height=\"17.5\" fill=\"#f5efe4\" stroke=\"#1a1614\" stroke-width=\"1.1\"/><text x=\"50\" y=\"135.8\" text-anchor=\"middle\" font-family=\"Bodoni Moda, Georgia, serif\" font-size=\"9.5\" font-weight=\"700\" letter-spacing=\"0.8\" fill=\"#1a1614\">LA CAMPANA</text></svg>",
+      "css": ".ds-loteria { display: block; width: 140px; height: auto; overflow: visible; rotate: var(--tilt, 0deg); filter: drop-shadow(0 10px 16px rgb(60 40 20 / 0.12)) drop-shadow(0 2px 3px rgb(60 40 20 / 0.1)); transition: rotate 0.35s cubic-bezier(0.16, 1, 0.3, 1), translate 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease; } .ds-loteria:hover { translate: 0 -8px; rotate: calc(var(--tilt, 0deg) - 3deg); filter: drop-shadow(0 22px 26px rgb(60 40 20 / 0.18)) drop-shadow(0 3px 4px rgb(60 40 20 / 0.1)); } @media (prefers-reduced-motion: reduce) { .ds-loteria { transition: none; } }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Lotería de gala",
+    "overview": "Vitela is the Mexican lotería executed as luxury stationery. Every feature is a numbered card printed on ivory paper with a thin black edge, a champagne-foil inner frame, a flat-ink drawing and a caption box in Bodoni capitals. The site around the cards is a sheet of the same paper: ivory with a cotton grain by day (\"papel de día\"), a warm near-black salon by night (\"salón de noche\"). The story is told \"carta por carta\" and closes with \"¡Lotería!\".\n\nThe cards are printed objects, so they never change with the theme. Only the page around them changes, and only their shadow adapts (a warm paper shadow by day; a deep shadow plus a faint gold halo edge by night). Collector inks are desaturated: carmín, azul tinta, verde botella, mostaza. Gold appears as foil on cards and as italic Bodoni emphasis in headings; carmín is the one action color in both modes.\n\nDensity is generous on the public site (wide bands, big Didone display) and practical in the panel (cards, forms, tables on the same tokens). Cards are set down by hand: each carries a fixed tilt between −2° and 2° derived from its number, and lifts and turns slightly when touched, as if taken from the deck.",
+    "keyCharacteristics": [
+      "Ivory paper with SVG fractal-noise grain on every page band; night mode is a warm brown-black, never pure black.",
+      "Lotería cards drawn in SVG with named inks resolved by CSS, identical in both modes.",
+      "Champagne foil gradient (light, base, light, deep) only on card frames and the logo frame.",
+      "Bodoni Moda for display and card type; Hanken Grotesk for interface text.",
+      "Carmín primary button in both modes; gold reserved for emphasis, foil, focus and selection.",
+      "Hand-placed tilt, deal-in animation, lift on hover; all motion removed under reduced motion."
+    ],
+    "rules": [
+      {
+        "name": "The Printed Object Rule",
+        "body": "Cards (`--card-*`, `--foil-*`) are the same in both modes. A mode may change a card's shadow and halo, never its paper, inks or foil.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two Golds Rule",
+        "body": "In light mode, gold-day is for large italics and non-text marks only; any gold text under ~24px uses gold-day-text. Both modes were validated WCAG AA.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Action Rule",
+        "body": "Carmín is the only solid action color. Gold never fills a button.",
+        "section": "colors"
+      },
+      {
+        "name": "The Didone Numbers Rule",
+        "body": "Card numbers, plan pass counts, prices and dates use Bodoni Moda (700–900); tables and counters in the panel use Hanken with tabular numerals.",
+        "section": "typography"
+      },
+      {
+        "name": "The Soft Paper Rule",
+        "body": "Shadows are always blurred and warm; there are no hard offset shadows.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do put every feature, sample and plan on a numbered card and keep the one running deck numbering (1–4, 5–10, 11–14, 15–17).",
+      "Do keep cards identical in both modes; adapt only shadow and halo.",
+      "Do use gold-day for large italics and marks, gold-day-text for small gold text, logo-v for the logo V.",
+      "Do use carmín as the single solid action color in both modes.",
+      "Do lay the grain texture on every page band background.",
+      "Do give each card its deterministic ±2° tilt and the lift-on-hover; remove motion under reduced motion.",
+      "Do resolve SVG inks through named fill/stroke attributes, never hex in the drawing."
+    ],
+    "donts": [
+      "Don't use wax seals or envelopes anywhere; they belong to another brand.",
+      "Don't put a kicker or eyebrow line above headings.",
+      "Don't use glyph icons (emoji, icon fonts or text symbols as icons); draw SVG or CSS shapes.",
+      "Don't use hard offset shadows.",
+      "Don't re-tint the cards per mode.",
+      "Don't use Vitela brand tokens (`--card-*`, `--accent`, `--primary`, Vitela fonts as brand) inside guest invitation templates; they use only `--tpl-*`.",
+      "Don't fill buttons with gold or use light gold-day for small text."
+    ]
+  }
+}

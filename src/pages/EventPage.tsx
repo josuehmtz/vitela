@@ -95,8 +95,8 @@ export default function EventPage() {
 
           {locked ? (
             <p className="notice notice-info">
-              Completa el pago de tu paquete para desbloquear el diseño de la invitación, la lista de invitados, las
-              mesas y el acceso de hostess.
+              Ya puedes diseñar tu invitación sin costo. Completa el pago de tu paquete para desbloquear la lista de
+              invitados, las mesas y el acceso de hostess.
             </p>
           ) : (
             <div className="meter" aria-label="Invitados registrados">
@@ -114,11 +114,11 @@ export default function EventPage() {
 
           {!readOnly && (
             <div className="actions">
+              <Link to={`/app/events/${ev.id}/design`} className="button">
+                Diseñar invitación
+              </Link>
               {!locked && (
                 <>
-                  <Link to={`/app/events/${ev.id}/design`} className="button">
-                    Diseñar invitación
-                  </Link>
                   <Link to={`/app/events/${ev.id}/seating`} className="button">
                     Mesas
                   </Link>

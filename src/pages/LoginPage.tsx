@@ -2,7 +2,8 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useState, type FormEvent } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router'
 import { getProviders, googleLoginUrl, login, register } from '../api/auth'
-import Logo, { Seal } from '../components/brand/Logo'
+import { ArtInvitacion, ArtPalomita, LoteriaCard } from '../components/brand/Loteria'
+import Logo from '../components/brand/Logo'
 import ThemeToggle from '../theme/ThemeToggle'
 import './auth.css'
 
@@ -45,13 +46,19 @@ export default function LoginPage() {
 
   return (
     <div className="auth">
-      <aside className="auth-aside" aria-hidden>
-        <div className="auth-aside-glow" />
+      <aside className="auth-aside invert-scheme" aria-hidden>
         <Link to="/" className="auth-aside-logo" tabIndex={-1}>
           <Logo />
         </Link>
         <div className="auth-aside-body">
-          <Seal size={92} className="auth-seal" />
+          <div className="auth-cards">
+            <LoteriaCard number={1} name="LA INVITACIÓN" ground="rojo">
+              <ArtInvitacion />
+            </LoteriaCard>
+            <LoteriaCard number={2} name="LA PALOMITA" ground="azul">
+              <ArtPalomita />
+            </LoteriaCard>
+          </div>
           <blockquote>
             “Cada gran celebración
             <br />
@@ -67,7 +74,7 @@ export default function LoginPage() {
 
       <main className="auth-main">
         <div className="auth-top">
-          <Link to="/" className="brand auth-mobile-logo" aria-label="Lacre, inicio">
+          <Link to="/" className="brand auth-mobile-logo" aria-label="Vitela, inicio">
             <Logo size={30} />
           </Link>
           <ThemeToggle />
@@ -75,7 +82,6 @@ export default function LoginPage() {
 
         <div className="auth-card">
           <div>
-            <p className="eyebrow">{registering ? 'Comienza sin costo' : 'Hola de nuevo'}</p>
             <h1>{registering ? 'Crea tu cuenta' : 'Inicia sesión'}</h1>
             <p className="muted">
               {registering

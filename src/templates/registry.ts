@@ -80,6 +80,46 @@ export const templates: TemplateDefinition[] = [
       headingFont: 'sans',
     }),
   },
+  {
+    key: 'loteria',
+    name: 'Lotería',
+    description: 'Cada parte de tu invitación es una carta de lotería sobre papel marfil.',
+    defaults: (event) => ({
+      ...baseDefaults(event),
+      colors: { primary: '#a3262a', background: '#f5efe4', text: '#1a1614' },
+      headingFont: 'serif',
+    }),
+  },
+  {
+    key: 'papel',
+    name: 'Papel picado',
+    description: 'Fiesta mexicana: banderitas de papel picado arriba y entre las secciones.',
+    defaults: (event) => ({
+      ...baseDefaults(event),
+      colors: { primary: '#c2185b', background: '#fff8f0', text: '#2b1d1a' },
+      headingFont: 'script',
+    }),
+  },
+  {
+    key: 'talavera',
+    name: 'Talavera',
+    description: 'Azulejo poblano: marco de mosaico y detalles en azul cobalto.',
+    defaults: (event) => ({
+      ...baseDefaults(event),
+      colors: { primary: '#1d3f8f', background: '#fbfaf6', text: '#1c2233' },
+      headingFont: 'serif',
+    }),
+  },
+  {
+    key: 'deco',
+    name: 'Art déco',
+    description: 'Noche de gala: abanicos geométricos, líneas dobles y dorado sobre fondo oscuro.',
+    defaults: (event) => ({
+      ...baseDefaults(event),
+      colors: { primary: '#d4af6a', background: '#14161c', text: '#f1ead9' },
+      headingFont: 'bodoni',
+    }),
+  },
 ]
 
 export const getTemplate = (key: string): TemplateDefinition =>
@@ -93,6 +133,7 @@ export function resolveConfig(key: TemplateKey | string, event: TemplateEvent, s
   const d = getTemplate(key).defaults(event)
   const s = stored ?? {}
   return {
+    variant: s.variant ?? d.variant,
     colors: { ...d.colors, ...s.colors },
     headingFont: s.headingFont ?? d.headingFont,
     texts: { ...d.texts, ...s.texts },

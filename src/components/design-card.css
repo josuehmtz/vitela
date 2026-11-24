@@ -1,0 +1,50 @@
+/* Cartas de papel en HTML: diseños del catálogo y paquetes (inicio, /disenos y diseñador). */
+/* ---------- Carta de papel en HTML (diseños y paquetes): misma anatomía que la carta SVG ---------- */
+.paper-card {
+  position: relative; padding: 10px; border-radius: 5px;
+  background: var(--card-paper); color: var(--card-ink);
+  border: 1px solid var(--card-ink); box-shadow: 0 0 0 1px var(--card-halo);
+  rotate: var(--tilt, 0deg); filter: var(--card-shadow);
+  transition: rotate 0.35s cubic-bezier(0.16, 1, 0.3, 1), translate 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease;
+}
+/* Marco interior de foil champagne */
+.paper-card::before {
+  content: ''; position: absolute; inset: 4px; pointer-events: none; z-index: 1;
+  border: 2px solid transparent;
+  border-image: linear-gradient(135deg, var(--foil-light), var(--foil) 45%, var(--foil-light) 70%, var(--foil-deep)) 1;
+}
+.paper-card:hover, .paper-card:active { translate: 0 -8px; rotate: calc(var(--tilt, 0deg) - 3deg); filter: var(--card-shadow-lift); }
+@media (prefers-reduced-motion: reduce) { .paper-card { transition: none; } }
+.card-box {
+  position: absolute; z-index: 2; top: 10px; left: 10px; min-width: 34px; height: 26px; padding-inline: 6px;
+  display: grid; place-items: center; background: var(--card-paper); border: 1px solid var(--card-ink);
+  font-family: var(--font-display); font-size: 0.95rem; font-weight: 700; color: var(--card-ink);
+}
+.card-caption {
+  position: relative; z-index: 2; display: block; margin: 8px 0 0; padding: 6px 10px; text-align: center;
+  background: var(--card-paper); border: 1px solid var(--card-ink); color: var(--card-ink);
+  font-family: var(--font-display); font-size: 1rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+}
+.card-caption span { font-style: italic; font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--card-rojo); }
+
+/* Diseños: cada uno es una carta; la pantalla de la invitación es su dibujo (con sus propios colores) */
+.showcase { display: flex; justify-content: center; align-items: flex-start; gap: clamp(20px, 3vw, 40px); padding-top: 8px; }
+.design-card { margin: 0; width: 250px; flex: none; display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; text-align: center; }
+.showcase .design-card:nth-child(even) { translate: 0 18px; }
+.design-screen {
+  --s: calc(226 / 390); position: relative; width: 100%; height: 430px; overflow: hidden; border: 1px solid var(--card-ink);
+  -webkit-mask-image: linear-gradient(to bottom, #000 78%, transparent 99%); mask-image: linear-gradient(to bottom, #000 78%, transparent 99%);
+}
+/* La invitación mide 390px y se escala; va fuera del flujo para que su ancho no estire la carta. */
+.device-content { position: absolute; top: 0; left: 0; width: 390px; transform: scale(var(--s)); transform-origin: top left; pointer-events: none; }
+.design-card figcaption { color: var(--text-muted); font-size: 0.95rem; max-width: 26ch; justify-self: center; }
+.design-placeholder { position: absolute; inset: 0; }
+
+/* Catálogo completo (/disenos) */
+.design-filters { display: flex; flex-wrap: wrap; gap: 8px; }
+.design-filters .chip[aria-pressed='true'] { background: var(--text); color: var(--bg); border-color: var(--text); }
+.design-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 40px 28px; justify-items: center; }
+.design-group { display: grid; gap: 22px; }
+.design-group-head { display: grid; gap: 4px; }
+.design-group-head h2 { margin: 0; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 900; }
+.design-group-head p { margin: 0; color: var(--text-muted); }

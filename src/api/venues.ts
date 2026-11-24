@@ -21,7 +21,7 @@ export interface MyVenue {
   terminatedAt: string | null
 }
 
-/** Cuenta actual: si es administrador de Lacre y de qué salones forma parte. */
+/** Cuenta actual: si es administrador de Vitela y de qué salones forma parte. */
 export interface Account {
   email: string
   isAdmin: boolean
@@ -60,7 +60,7 @@ export const getAccessLink = (token: string) => api<AccessLinkInfo>(`/access-lin
 export const acceptAccessLink = (token: string) =>
   send<{ kind: AccessLinkKind; eventId: string | null }>('POST', `/access-links/${encodeURIComponent(token)}/accept`)
 
-// ---- Administración (solo Lacre) ----
+// ---- Administración (solo Vitela) ----
 
 export interface VenueMember {
   userId: string
@@ -114,6 +114,26 @@ export const createVenueInvite = (id: string) => send<CreatedLink>('POST', `/adm
 export const removeVenueMember = (id: string, userId: string) =>
   send<void>('DELETE', `/admin/venues/${id}/members/${userId}`)
 export const getVenueEvents = (id: string) => api<VenueEvent[]>(`/admin/venues/${id}/events`)
+
+/** Evento de un cliente, para darle un paquete a la medida (más invitados que el paquete más grande). */
+export interface AdminEvent {
+  id: string
+  title: string
+  startsAt: string
+  status: EventStatus
+  ownerEmail: string | null
+  venueName: string | null
+  planName: string | null
+  maxPasses: number
+  totalPasses: number
+  /** Lo acordado y pagado fuera de la app; null si el evento no tiene paquete a la medida. */
+  customLimitNote: string | null
+}
+
+export const searchAdminEvents = (email: string) =>
+  api<AdminEvent[]>(`/admin/events?email=${encodeURIComponent(email)}`)
+export const setCustomLimit = (id: string, maxPasses: number, note: string) =>
+  send<AdminEvent>('POST', `/admin/events/${id}/custom-limit`, { maxPasses, note })
 
 const dateFmt = new Intl.DateTimeFormat('es-MX', { dateStyle: 'medium', timeZone: 'UTC' })
 /** "2026-12-31" → "31 dic 2026" (fecha sin hora, no se convierte de zona). */

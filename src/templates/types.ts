@@ -1,7 +1,7 @@
 import type { EventType } from '../api/events'
 
-export type TemplateKey = 'clasica' | 'jardin' | 'moderna'
-export type HeadingFont = 'serif' | 'script' | 'sans'
+export type TemplateKey = 'clasica' | 'jardin' | 'moderna' | 'loteria' | 'papel' | 'talavera' | 'deco'
+export type HeadingFont = 'serif' | 'script' | 'sans' | 'bodoni'
 
 export interface ItineraryItem {
   time: string
@@ -10,6 +10,8 @@ export interface ItineraryItem {
 
 /** Personalización que guarda el cliente (jsonb en el backend). */
 export interface TemplateConfig {
+  /** Diseño del catálogo con el que se empezó (estructura + colores + letra), p. ej. "papel-fiesta". */
+  variant?: string
   colors: { primary: string; background: string; text: string }
   headingFont: HeadingFont
   texts: {
