@@ -6,8 +6,10 @@ import { getTemplateConfig, saveTemplateConfig, type SavedTemplate } from '../ap
 import PhotosEditor from '../components/PhotosEditor'
 import { headingFonts } from '../templates/fonts'
 import InvitationView from '../templates/InvitationView'
-import { getTemplate, resolveConfig, templates } from '../templates/registry'
+import { designsFor, eventFilters, findDesign, structureOrder, type CatalogDesign } from '../templates/catalog'
+import { getTemplate, resolveConfig } from '../templates/registry'
 import type { HeadingFont, TemplateConfig, TemplateKey } from '../templates/types'
+import type { EventType } from '../api/events'
 
 const sampleGuest = { displayName: 'Familia Ejemplo', passes: 2 }
 
@@ -59,17 +61,23 @@ function Editor({ event, saved }: { event: EventDetail; saved: SavedTemplate }) 
   const set = <K extends keyof TemplateConfig>(key: K, value: TemplateConfig[K]) =>
     setConfig((c) => ({ ...c, [key]: value }))
 
-  const chooseTemplate = (key: TemplateKey) => {
-    // Al cambiar de plantilla se conservan los textos y se toman los colores y la letra de la nueva.
-    const d = getTemplate(key).defaults(event)
-    setTemplateKey(key)
-    setConfig((c) => ({ ...c, colors: d.colors, headingFont: d.headingFont }))
+  const [designFilter, setDesignFilter] = useState<EventType | 'all'>(event.type)
+
+  const chooseDesign = (d: CatalogDesign) => {
+    // Al cambiar de diseño se conservan los textos y fotos; se toman la estructura, los colores y la letra.
+    setTemplateKey(d.structure)
+    setConfig((c) => ({ ...c, variant: d.id, colors: d.colors, headingFont: d.headingFont }))
   }
 
   const resetStyle = () => {
-    const d = getTemplate(templateKey).defaults(event)
+    const chosen = findDesign(config.variant)
+    const d = chosen?.structure === templateKey ? chosen : getTemplate(templateKey).defaults(event)
     setConfig((c) => ({ ...c, colors: d.colors, headingFont: d.headingFont }))
   }
+
+  const designGroups = structureOrder
+    .map((key) => ({ key, name: getTemplate(key).name, designs: designsFor(designFilter).filter((d) => d.structure === key) }))
+    .filter((g) => g.designs.length > 0)
 
   const { texts, sections, colors } = config
 
@@ -104,30 +112,47 @@ function Editor({ event, saved }: { event: EventDetail; saved: SavedTemplate }) 
 
       <div className="design-layout" data-tab={mobileTab}>
         <div className="design-controls">
-          <Group title="Plantilla">
-            <div className="template-picker">
-              {templates.map((t) => {
-                const d = t.defaults(event)
-                return (
-                  <button
-                    key={t.key}
-                    type="button"
-                    className={`template-option${t.key === templateKey ? ' selected' : ''}`}
-                    onClick={() => chooseTemplate(t.key)}
-                    aria-pressed={t.key === templateKey}
-                    aria-label={`Plantilla ${t.name}`}
-                  >
-                    <span className="swatches" aria-hidden>
-                      <i style={{ background: d.colors.background }} />
-                      <i style={{ background: d.colors.primary }} />
-                      <i style={{ background: d.colors.text }} />
-                    </span>
-                    <strong>{t.name}</strong>
-                    <span className="muted small">{t.description}</span>
-                  </button>
-                )
-              })}
+          <Group title="Diseño">
+            <div className="design-filters" role="group" aria-label="Filtrar diseños por tipo de evento">
+              {eventFilters.map((f) => (
+                <button key={f.value} type="button" className="chip" aria-pressed={designFilter === f.value} onClick={() => setDesignFilter(f.value)}>
+                  {f.label}
+                </button>
+              ))}
             </div>
+            <div className="design-picker">
+              {designGroups.map((g) => (
+                <div key={g.key} className="design-picker-group">
+                  <p className="design-picker-title">{g.name}</p>
+                  <div className="template-picker">
+                    {g.designs.map((d) => {
+                      const selected = templateKey === d.structure && config.variant === d.id
+                      return (
+                        <button
+                          key={d.id}
+                          type="button"
+                          className={`template-option${selected ? ' selected' : ''}`}
+                          onClick={() => chooseDesign(d)}
+                          aria-pressed={selected}
+                          aria-label={`Diseño ${g.name} ${d.name}`}
+                        >
+                          <span className="swatches" aria-hidden>
+                            <i style={{ background: d.colors.background }} />
+                            <i style={{ background: d.colors.primary }} />
+                            <i style={{ background: d.colors.text }} />
+                          </span>
+                          <strong>{d.name}</strong>
+                          <span className="muted small">{d.tagline}</span>
+                        </button>
+                      )
+                    })}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <Link to="/disenos" target="_blank" rel="noreferrer" className="small">
+              Ver todos los diseños en grande
+            </Link>
           </Group>
 
           <Group title="Colores y letra">

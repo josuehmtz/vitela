@@ -3,25 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lacre · Invitaciones digitales con QR</title>
+    <title>Vitela · Invitaciones digitales con QR</title>
     <meta
       name="description"
       content="Invitaciones digitales para bodas y XV años: confirmación de asistencia, plano de mesas y acceso con código QR."
     />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="theme-color" content="#faf7f2" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#120e14" media="(prefers-color-scheme: dark)" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;600;700&display=swap"
-    />
+    <meta name="theme-color" content="#f5efe4" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1a1614" media="(prefers-color-scheme: dark)" />
+    <link rel="preload" href="/fonts/bodoni-moda-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/hanken-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
     <script>
-      // Aplica el tema elegido (claro/oscuro) antes de pintar, para evitar un destello.
+      // Fija el modo antes de pintar, para evitar un destello: ?tema=claro|oscuro (solo esa visita, sin guardarse),
+      // luego la elección guardada y, en la primera visita, el modo del sistema.
       try {
-        var t = localStorage.getItem('lacre-theme')
-        if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t
+        var q = new URLSearchParams(location.search).get('tema')
+        var t = q === 'claro' ? 'light' : q === 'oscuro' ? 'dark' : null
+        if (!t) t = localStorage.getItem('vitela-theme') || localStorage.getItem('lacre-theme')
+        if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+        document.documentElement.dataset.theme = t
       } catch (e) {}
     </script>
   </head>

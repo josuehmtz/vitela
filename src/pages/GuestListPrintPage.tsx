@@ -1,3 +1,4 @@
+import { Mark } from '../components/brand/Logo'
 import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { Link, useParams } from 'react-router'
@@ -67,6 +68,7 @@ export default function GuestListPrintPage() {
       </div>
 
       <header className="print-heading">
+        <Mark mono size={44} className="print-logo" />
         <h2>{event.data.title}</h2>
         <p>
           {dateFmt.format(new Date(event.data.startsAt))}

@@ -12,7 +12,7 @@ const UPDATED = '18 de noviembre de 2026'
  */
 export default function PrivacyPage() {
   useEffect(() => {
-    document.title = 'Aviso de privacidad · Lacre'
+    document.title = 'Aviso de privacidad · Vitela'
   }, [])
 
   const mail = <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
@@ -26,14 +26,14 @@ export default function PrivacyPage() {
         <p className="muted">Última actualización: {UPDATED}</p>
 
         <p>
-          En <strong>Lacre</strong> cuidamos la información de quienes organizan su evento con nosotros y de sus
+          En <strong>Vitela</strong> cuidamos la información de quienes organizan su evento con nosotros y de sus
           invitados. Este aviso explica qué datos usamos, para qué y cómo puedes ejercer tus derechos, conforme a la
           Ley Federal de Protección de Datos Personales en Posesión de los Particulares.
         </p>
 
         <h2>Responsable</h2>
         <p>
-          Lacre, servicio de invitaciones digitales, es responsable del tratamiento de tus datos personales. Para
+          Vitela, servicio de invitaciones digitales, es responsable del tratamiento de tus datos personales. Para
           cualquier tema relacionado con tu información puedes escribirnos a {mail}.
         </p>
 
@@ -53,7 +53,7 @@ export default function PrivacyPage() {
           </li>
           <li>
             <strong>Pagos:</strong> los datos de tu tarjeta los captura directamente nuestro procesador de pagos
-            (Stripe). Lacre no ve ni guarda el número de tu tarjeta; solo recibimos la confirmación del pago.
+            (Stripe). Vitela no ve ni guarda el número de tu tarjeta; solo recibimos la confirmación del pago.
           </li>
         </ul>
         <p>No solicitamos datos personales sensibles.</p>
@@ -74,7 +74,7 @@ export default function PrivacyPage() {
         <h2>Con quién se comparten</h2>
         <p>
           Para que el servicio funcione, tus datos se almacenan y procesan con proveedores que actúan por cuenta de
-          Lacre: servicios de alojamiento y base de datos (Google Cloud, Neon y Netlify), el procesador de pagos
+          Vitela: servicios de alojamiento y base de datos (Google Cloud, Neon y Netlify), el procesador de pagos
           (Stripe) y, si eliges entrar con Google, el servicio de inicio de sesión de Google. Estos proveedores pueden
           estar fuera de México. No compartimos tus datos con terceros para fines distintos a los de este aviso.
         </p>

@@ -18,7 +18,7 @@ const MIN_AWAY_MS = 1200
 
 /**
  * Envío rápido por WhatsApp: abre WhatsApp con el mensaje listo para cada invitación, una tras otra.
- * Al regresar a Lacre se anota como enviada y pasa sola a la siguiente (con opción de deshacer).
+ * Al regresar a Vitela se anota como enviada y pasa sola a la siguiente (con opción de deshacer).
  */
 export default function QuickSendDialog({ eventId, eventTitle, pending, withoutPhone, onChanged, onClose }: Props) {
   const dialogRef = useRef<HTMLDialogElement>(null)

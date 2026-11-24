@@ -101,12 +101,13 @@ export default function BillingPanel({ eventId }: { eventId: string }) {
           <h2>Paquete y pago</h2>
           {draft ? (
             <p className="muted small">
-              Elige tu paquete y completa el pago. En cuanto se acredite se desbloquean el diseño de la invitación, la
-              lista de invitados y las mesas.
+              Elige tu paquete y completa el pago. En cuanto se acredite se desbloquean la lista de invitados, las mesas
+              y el acceso de hostess. El diseño de la invitación ya está disponible.
             </p>
           ) : (
             <p className="muted small">
-              Paquete <strong>{b.currentPlan}</strong> · hasta {b.maxPasses} invitados ({b.totalPasses} registrados).
+              Paquete <strong>{b.customLimit ? 'a la medida' : b.currentPlan}</strong> · hasta {b.maxPasses} invitados
+              {` (${b.totalPasses} registrados).`}
               {b.managedBy && <> Incluido en el convenio de {b.managedBy}.</>}
             </p>
           )}

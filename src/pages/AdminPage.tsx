@@ -14,8 +14,11 @@ import {
   joinUrl,
   reactivateVenue,
   removeVenueMember,
+  searchAdminEvents,
+  setCustomLimit,
   terminateVenue,
   updateVenue,
+  type AdminEvent,
   type CreatedLink,
   type SaveVenue,
   type Venue,
@@ -24,7 +27,7 @@ import { formatDateTime } from '../lib/dates'
 import { plural } from '../lib/text'
 import { useConfirm } from '../lib/confirm'
 
-/** Panel de Lacre: salones con convenio, su personal y los eventos que han dado de alta. */
+/** Panel de Vitela: salones con convenio, su personal y los eventos que han dado de alta. */
 export default function AdminPage() {
   const account = useQuery({ queryKey: ['account'], queryFn: getAccount })
   const venues = useQuery({ queryKey: ['admin-venues'], queryFn: getVenues, enabled: account.data?.isAdmin === true })
@@ -61,6 +64,8 @@ export default function AdminPage() {
       {venues.data?.map((v) => (
         <VenueCard key={v.id} venue={v} />
       ))}
+
+      <CustomLimitCard />
     </main>
   )
 }
@@ -116,7 +121,7 @@ function VenueCard({ venue }: { venue: Venue }) {
     )
 
   const inviteMessage = invite
-    ? `Hola, este es tu acceso a Lacre como personal de ${venue.name}. Ábrelo, inicia sesión o crea tu cuenta y acepta: ${joinUrl(invite.token)}`
+    ? `Hola, este es tu acceso a Vitela como personal de ${venue.name}. Ábrelo, inicia sesión o crea tu cuenta y acepta: ${joinUrl(invite.token)}`
     : ''
 
   return (
@@ -447,5 +452,149 @@ function VenueForm({ venue, onDone }: { venue?: Venue; onDone: () => void }) {
         </button>
       </div>
     </form>
+  )
+}
+
+/**
+ * Paquete a la medida: el cliente pidió cotización para más invitados que el paquete más grande,
+ * pagó fuera de la app y aquí se le da a su evento el límite acordado.
+ */
+function CustomLimitCard() {
+  const [term, setTerm] = useState('')
+  const [search, setSearch] = useState('')
+  const events = useQuery({
+    queryKey: ['admin-events', search],
+    queryFn: () => searchAdminEvents(search),
+    enabled: search.length >= 3,
+  })
+
+  const submit = (e: FormEvent) => {
+    e.preventDefault()
+    setSearch(term.trim())
+  }
+
+  return (
+    <section className="card">
+      <div>
+        <h2>Paquete a la medida</h2>
+        <p className="muted small">
+          Para quien pidió cotización por más invitados que el paquete más grande. Busca al cliente por su correo y,
+          cuando haya pagado, dale a su evento el límite acordado.
+        </p>
+      </div>
+      <form className="actions" onSubmit={submit} role="search">
+        <input
+          type="search"
+          value={term}
+          onChange={(e) => setTerm(e.target.value)}
+          placeholder="Correo del cliente"
+          aria-label="Correo del cliente"
+          style={{ flex: '1 1 240px' }}
+        />
+        <button type="submit" disabled={term.trim().length < 3}>
+          Buscar
+        </button>
+      </form>
+      {events.isFetching && <p className="muted small">Buscando…</p>}
+      {events.isError && <p className="error">{events.error.message}</p>}
+      {events.data?.length === 0 && <p className="muted small">Ese correo no tiene eventos.</p>}
+      {events.data?.map((ev) => (
+        <CustomLimitRow key={ev.id} event={ev} search={search} />
+      ))}
+    </section>
+  )
+}
+
+function CustomLimitRow({ event, search }: { event: AdminEvent; search: string }) {
+  const queryClient = useQueryClient()
+  const confirm = useConfirm()
+  const [editing, setEditing] = useState(false)
+  const [maxPasses, setMaxPasses] = useState(() => Math.max(event.maxPasses, event.totalPasses, 600))
+  const [note, setNote] = useState(event.customLimitNote ?? '')
+  const save = useMutation({
+    mutationFn: () => setCustomLimit(event.id, maxPasses, note.trim()),
+    onSuccess: () => {
+      setEditing(false)
+      queryClient.invalidateQueries({ queryKey: ['admin-events', search] })
+    },
+  })
+
+  const submit = async (e: FormEvent) => {
+    e.preventDefault()
+    const ok = await confirm({
+      title: `¿Dar ${maxPasses} invitados a “${event.title}”?`,
+      message:
+        event.status === 'Draft'
+          ? 'El evento quedará pagado y desbloqueado. Hazlo solo cuando el cliente ya haya pagado.'
+          : 'El límite del evento cambiará al que acordaron.',
+      confirmLabel: 'Sí, aplicar',
+    })
+    if (ok) save.mutate()
+  }
+
+  const packageLabel = event.customLimitNote
+    ? `A la medida · hasta ${event.maxPasses}`
+    : event.planName
+      ? `${event.planName} · hasta ${event.maxPasses}`
+      : 'Sin paquete'
+
+  return (
+    <div className="card" style={{ boxShadow: 'none' }}>
+      <div className="page-header">
+        <div>
+          <strong>{event.title}</strong>
+          <p className="muted small" style={{ margin: 0 }}>
+            {formatDateTime(event.startsAt)} · {eventStatusLabels[event.status]} · {event.ownerEmail}
+            {event.venueName && <> · Salón {event.venueName}</>}
+          </p>
+          <p className="small" style={{ margin: '4px 0 0' }}>
+            {packageLabel} · {plural(event.totalPasses, 'invitado registrado', 'invitados registrados')}
+          </p>
+          {event.customLimitNote && <p className="muted small" style={{ margin: '2px 0 0' }}>{event.customLimitNote}</p>}
+        </div>
+        {!editing && (
+          <button type="button" className="secondary small" onClick={() => setEditing(true)}>
+            {event.customLimitNote ? 'Cambiar límite' : 'Dar límite a la medida'}
+          </button>
+        )}
+      </div>
+      {editing && (
+        <form className="form" onSubmit={submit}>
+          <div className="grid-2 form-grid" style={{ display: 'grid', gap: 12 }}>
+            <label>
+              Invitados (límite)
+              <input
+                type="number"
+                inputMode="numeric"
+                min={Math.max(1, event.totalPasses)}
+                max={10000}
+                required
+                value={maxPasses}
+                onChange={(e) => setMaxPasses(Number(e.target.value))}
+              />
+            </label>
+            <label>
+              Lo que acordaron
+              <input
+                required
+                maxLength={500}
+                value={note}
+                onChange={(e) => setNote(e.target.value)}
+                placeholder="800 invitados · $3,500 por transferencia"
+              />
+            </label>
+          </div>
+          {save.error && <p className="error">{save.error.message}</p>}
+          <div className="actions">
+            <button type="submit" disabled={save.isPending}>
+              {save.isPending ? 'Guardando…' : 'Aplicar límite'}
+            </button>
+            <button type="button" className="secondary" onClick={() => setEditing(false)}>
+              Cancelar
+            </button>
+          </div>
+        </form>
+      )}
+    </div>
   )
 }

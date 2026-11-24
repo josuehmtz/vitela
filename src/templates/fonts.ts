@@ -20,10 +20,17 @@ export const headingFonts: Record<HeadingFont, { label: string; css: string }> =
   serif: { label: 'Elegante (Playfair)', css: "'Playfair Display', Georgia, serif" },
   script: { label: 'Manuscrita (Great Vibes)', css: "'Great Vibes', 'Brush Script MT', cursive" },
   sans: { label: 'Moderna (Montserrat)', css: "'Montserrat', system-ui, sans-serif" },
+  // Bodoni Moda viene con el sitio (index.css): no se descarga aparte.
+  bodoni: { label: 'De gala (Bodoni)', css: "'Bodoni Moda', Didot, Georgia, serif" },
 }
 
 export const bodyFonts: Record<TemplateKey, string> = {
   clasica: "'Cormorant Garamond', Georgia, serif",
   jardin: "'Cormorant Garamond', Georgia, serif",
   moderna: "'Montserrat', system-ui, sans-serif",
+  // Bodoni Moda ya viene con el sitio (index.css); es la letra de las cartas de Vitela.
+  loteria: "'Bodoni Moda', Georgia, serif",
+  papel: "'Cormorant Garamond', Georgia, serif",
+  talavera: "'Cormorant Garamond', Georgia, serif",
+  deco: "'Montserrat', system-ui, sans-serif",
 }

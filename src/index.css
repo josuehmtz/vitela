@@ -1,114 +1,160 @@
 /* =========================================================================
-   Lacre · sistema de diseño
-   Claro: marfil y dorado champagne. Oscuro: ciruela de noche y dorado.
-   El tema sigue al sistema; el usuario puede fijarlo (html[data-theme]).
-   Las plantillas de invitación tienen sus propios colores (templates.css).
+   Vitela · sistema de diseño ("Lotería de gala": lotería mexicana como papelería de lujo)
+   Bodoni Moda para títulos y Hanken Grotesk para la interfaz.
+   Modo claro "papel de día" (marfil con grano) y oscuro "salón de noche", en html[data-theme].
+   Las cartas son objetos impresos: iguales en ambos modos. Las plantillas de invitación tienen
+   sus propios colores (templates.css).
    ========================================================================= */
-:root {
-  --font-display: 'Cormorant Garamond', 'Times New Roman', Georgia, serif;
-  --font-ui: 'Manrope', system-ui, 'Segoe UI', Roboto, sans-serif;
-  --radius: 16px;
-  --radius-sm: 10px;
+@font-face {
+  font-family: 'Bodoni Moda'; font-style: normal; font-weight: 400 900; font-display: swap;
+  src: url('/fonts/bodoni-moda-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Bodoni Moda'; font-style: normal; font-weight: 400 900; font-display: swap;
+  src: url('/fonts/bodoni-moda-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+20A0-20AB, U+20AD-20C4, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Bodoni Moda'; font-style: italic; font-weight: 400 900; font-display: swap;
+  src: url('/fonts/bodoni-moda-italic-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Bodoni Moda'; font-style: italic; font-weight: 400 900; font-display: swap;
+  src: url('/fonts/bodoni-moda-italic-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+20A0-20AB, U+20AD-20C4, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Hanken Grotesk'; font-style: normal; font-weight: 100 900; font-display: swap;
+  src: url('/fonts/hanken-grotesk-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Hanken Grotesk'; font-style: normal; font-weight: 100 900; font-display: swap;
+  src: url('/fonts/hanken-grotesk-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+20A0-20AB, U+20AD-20C4, U+2C60-2C7F, U+A720-A7FF;
+}
 
-  --bg: #faf7f2;
-  --bg-alt: #f3ece2;
-  --surface: #ffffff;
-  --surface-2: #f8f3eb;
-  --text: #2a2420;
-  --text-muted: #7a6e66;
-  --border: #e8dfd3;
-  --accent: #a8834f;
-  --accent-strong: #8a6838;
-  --accent-soft: rgb(168 131 79 / 0.13);
-  --on-accent: #ffffff;
-  --seal: #8e2c3a;
-  --seal-light: #b24656;
-  --seal-dark: #6b1f2b;
-  --seal-soft: rgb(142 44 58 / 0.1);
-  --error: #b42318;
-  --ok: #2e7d4f;
-  --ok-soft: rgb(46 125 79 / 0.12);
-  --warn-soft: rgb(181 129 23 / 0.14);
-  --muted-soft: rgb(122 110 102 / 0.14);
-  --gold: linear-gradient(135deg, #cfae74 0%, #a8834f 55%, #8a6838 100%);
-  --shadow-sm: 0 1px 2px rgb(42 36 32 / 0.05), 0 2px 10px rgb(42 36 32 / 0.04);
-  --shadow: 0 18px 50px -12px rgb(42 36 32 / 0.18);
-  --glass: rgb(250 247 242 / 0.78);
-  /* Plano del salón (Konva lee estos valores; ver seating/useThemeColors.ts) */
-  --plan-floor: #fffdf9;
-  --plan-grid: #efe7dc;
-  --plan-wall: #a8977f;
-  --plan-table: #ffffff;
-  --plan-seat: #f1e9dd;
+:root {
+  --font-display: 'Bodoni Moda', 'Didot', 'Bodoni 72', Georgia, serif;
+  --font-ui: 'Hanken Grotesk', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --radius: 14px;
+  --radius-sm: 8px;
+
+  /* Cartas de lotería: objetos impresos, iguales en ambos modos (solo cambia su sombra) */
+  --card-paper: #f5efe4;
+  --card-paper-hi: #fbf7f0;
+  --card-ink-soft: #5c524a;
+  --card-ink: #1a1614;
+  --card-rojo: #a3262a;
+  --card-azul: #1f3a6b;
+  --card-verde: #2f5d46;
+  --card-mostaza: #d9a62e;
+  --card-frijol: #5a2a1c;
+  --card-frijol-brillo: #e9d8c8;
+  --foil-light: #ead3a0;
+  --foil: #c9a45c;
+  --foil-deep: #9c7a37;
+  /* Botón principal: carmín en ambos modos (texto blanco 7.3:1) */
+  --primary: #a3262a;
+  --primary-strong: #861b1f;
+  --on-primary: #ffffff;
+  --error: #a3262a;
+  /* Duración del cambio de modo */
+  --theme-fade: 200ms;
+}
+
+/* Los modos viven en html[data-theme] (lo pone index.html antes de pintar: la elección guardada o el
+   tema del sistema en la primera visita). .invert-scheme muestra un bloque en el modo contrario. */
+:root, :root[data-theme='light'], :root[data-theme='dark'] .invert-scheme {
+  /* Modo claro: "papel de día" */
+  --bg: #f5efe4;
+  --bg-alt: #fbf7f0;
+  --surface: #fbf7f0;
+  --surface-2: #efe7d9;
+  --text: #1a1614;
+  --text-muted: #5c524a;
+  --border: rgb(26 22 20 / 0.85);
+  --hairline: rgb(26 22 20 / 0.14);
+  /* Dorado: #a8842f para cursivas grandes (3:1 sobre marfil); --accent-text para texto pequeño (5.1:1) */
+  /* Medido contra el marfil ya con grano (≈#f0e9dd): #a8842f quedaba en 2.9:1; este da 3.3:1 en cursivas grandes */
+  --accent: #9c7a2b;
+  --accent-text: #7d6020;
+  --accent-strong: #7d6020;
+  --accent-soft: rgb(168 132 47 / 0.14);
+  --on-accent: #1a1614;
+  --seal: #1f3a6b;
+  --seal-light: #35548c;
+  --seal-dark: #142748;
+  --seal-soft: rgb(31 58 107 / 0.1);
+  --ok: #2f5d46;
+  --ok-soft: rgb(47 93 70 / 0.12);
+  --warn: #b98710;
+  --warn-soft: rgb(217 166 46 / 0.2);
+  --muted-soft: rgb(92 82 74 / 0.12);
+  --gold: #a8842f;
+  --logo-v: #a8842f;
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .24 0 0 0 0 .16 0 0 0 0 .08 0 0 0 .1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --card-shadow: drop-shadow(0 10px 16px rgb(60 40 20 / 0.12)) drop-shadow(0 2px 3px rgb(60 40 20 / 0.1));
+  --card-shadow-lift: drop-shadow(0 22px 26px rgb(60 40 20 / 0.18)) drop-shadow(0 3px 4px rgb(60 40 20 / 0.1));
+  --card-halo: transparent;
+  --shadow-sm: 0 1px 2px rgb(60 40 20 / 0.06), 0 2px 10px rgb(60 40 20 / 0.05);
+  --shadow: 0 18px 44px -14px rgb(60 40 20 / 0.22);
+  --glass: rgb(245 239 228 / 0.88);
+  --plan-floor: #fbf7f0;
+  --plan-grid: #e8dfd0;
+  --plan-wall: #8a7f73;
+  --plan-table: #fbf7f0;
+  --plan-seat: #efe7d9;
   color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) {
-    --bg: #120e14;
-    --bg-alt: #19131c;
-    --surface: #1c1620;
-    --surface-2: #241c29;
-    --text: #f2ebe2;
-    --text-muted: #a99ca6;
-    --border: #352a3a;
-    --accent: #d6b27a;
-    --accent-strong: #ecd09f;
-    --accent-soft: rgb(214 178 122 / 0.14);
-    --on-accent: #1a1418;
-    --seal: #b8404f;
-    --seal-light: #d65d6c;
-    --seal-dark: #7c2532;
-    --seal-soft: rgb(201 80 95 / 0.16);
-    --error: #f97066;
-    --ok: #6fcf97;
-    --ok-soft: rgb(111 207 151 / 0.14);
-    --warn-soft: rgb(230 180 80 / 0.16);
-    --muted-soft: rgb(169 156 166 / 0.16);
-    --gold: linear-gradient(135deg, #f0d9ad 0%, #d6b27a 55%, #b8935b 100%);
-    --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.3), 0 2px 10px rgb(0 0 0 / 0.2);
-    --shadow: 0 18px 50px -12px rgb(0 0 0 / 0.6);
-    --glass: rgb(18 14 20 / 0.72);
-    --plan-floor: #211a26;
-    --plan-grid: #2e2534;
-    --plan-wall: #9a8c98;
-    --plan-table: #342a3b;
-    --plan-seat: #4a3e50;
-    color-scheme: dark;
-  }
-}
-
-:root[data-theme='dark'] {
-  --bg: #120e14;
-  --bg-alt: #19131c;
-  --surface: #1c1620;
-  --surface-2: #241c29;
-  --text: #f2ebe2;
-  --text-muted: #a99ca6;
-  --border: #352a3a;
-  --accent: #d6b27a;
-  --accent-strong: #ecd09f;
-  --accent-soft: rgb(214 178 122 / 0.14);
-  --on-accent: #1a1418;
-  --seal: #b8404f;
-  --seal-light: #d65d6c;
-  --seal-dark: #7c2532;
-  --seal-soft: rgb(201 80 95 / 0.16);
-  --error: #f97066;
-  --ok: #6fcf97;
-  --ok-soft: rgb(111 207 151 / 0.14);
-  --warn-soft: rgb(230 180 80 / 0.16);
-  --muted-soft: rgb(169 156 166 / 0.16);
-  --gold: linear-gradient(135deg, #f0d9ad 0%, #d6b27a 55%, #b8935b 100%);
+:root[data-theme='dark'], :root[data-theme='light'] .invert-scheme {
+  /* Modo oscuro: "salón de noche" */
+  --bg: #1a1614;
+  --bg-alt: #241f1c;
+  --surface: #241f1c;
+  --surface-2: #2d2724;
+  --text: #f5efe4;
+  --text-muted: #b8afa3;
+  --border: rgb(245 239 228 / 0.15);
+  --hairline: rgb(245 239 228 / 0.1);
+  --accent: #c9a45c;
+  --accent-text: #c9a45c;
+  --accent-strong: #dcbd7e;
+  --accent-soft: rgb(201 164 92 / 0.14);
+  --on-accent: #1a1614;
+  --seal: #8fa9d8;
+  --seal-light: #b0c4e6;
+  --seal-dark: #5c7bb3;
+  --seal-soft: rgb(143 169 216 / 0.14);
+  --ok: #7cc29b;
+  --ok-soft: rgb(124 194 155 / 0.14);
+  --warn: #d9a62e;
+  --warn-soft: rgb(217 166 46 / 0.16);
+  --muted-soft: rgb(184 175 163 / 0.14);
+  --error: #f08a7e;
+  --gold: #c9a45c;
+  --logo-v: #c9a45c;
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .96 0 0 0 0 .94 0 0 0 0 .89 0 0 0 .045 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --card-shadow: drop-shadow(0 16px 24px rgb(0 0 0 / 0.55)) drop-shadow(0 3px 4px rgb(0 0 0 / 0.35));
+  --card-shadow-lift: drop-shadow(0 28px 34px rgb(0 0 0 / 0.6)) drop-shadow(0 4px 6px rgb(0 0 0 / 0.35));
+  --card-halo: rgb(201 164 92 / 0.25);
   --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.3), 0 2px 10px rgb(0 0 0 / 0.2);
   --shadow: 0 18px 50px -12px rgb(0 0 0 / 0.6);
-  --glass: rgb(18 14 20 / 0.72);
-  --plan-floor: #211a26;
-  --plan-grid: #2e2534;
-  --plan-wall: #9a8c98;
-  --plan-table: #342a3b;
-  --plan-seat: #4a3e50;
+  --glass: rgb(26 22 20 / 0.88);
+  --plan-floor: #241f1c;
+  --plan-grid: #2f2925;
+  --plan-wall: #9d948a;
+  --plan-table: #332c28;
+  --plan-seat: #463d38;
   color-scheme: dark;
+}
+
+/* Cambio de modo suave (lo activa useTheme solo al cambiar; nunca con movimiento reducido) */
+:root.theme-fading, :root.theme-fading * {
+  transition: background-color var(--theme-fade) ease, color var(--theme-fade) ease, border-color var(--theme-fade) ease !important;
 }
 
 :root {
@@ -120,9 +166,8 @@
 }
 
 * { box-sizing: border-box; }
-body { margin: 0; background: var(--bg); min-height: 100vh; }
-a { color: var(--accent-strong); text-underline-offset: 3px; }
-:root[data-theme='dark'] a:not(.button):not(.google-button) { color: var(--accent); }
+body { margin: 0; background: var(--bg) var(--grain); min-height: 100vh; }
+a { color: var(--accent-text); text-underline-offset: 3px; }
 h1, h2, h3 { font-family: var(--font-display); font-weight: 600; margin: 0 0 4px; line-height: 1.15; letter-spacing: -0.01em; }
 h1 { font-size: 2.2rem; }
 h2 { font-size: 1.55rem; }
@@ -137,12 +182,53 @@ p { margin: 0 0 8px; }
 .small { font-size: 0.875rem; }
 .error { color: var(--error); }
 .back { text-decoration: none; font-size: 0.9rem; color: var(--text-muted); }
-.back:hover { color: var(--accent); }
-.eyebrow { font-size: 0.75rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin: 0; }
+.back:hover { color: var(--accent-text); }
+.eyebrow { font-size: 0.75rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent-text); font-weight: 600; margin: 0; }
 
 /* Logo */
 .logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); }
-.logo-word { font-family: var(--font-display); font-size: 1.65rem; font-weight: 600; letter-spacing: 0.04em; line-height: 1; }
+/* La carta del logo es papel: en modo oscuro, una sombra la despega del fondo */
+.vitela-mark, .vitela-seal { display: block; flex: none; }
+:root[data-theme='dark'] .vitela-mark { filter: drop-shadow(0 2px 4px rgb(0 0 0 / 0.5)); }
+.logo-word { font-family: var(--font-display); font-size: 1.6rem; font-weight: 800; letter-spacing: 0.01em; line-height: 1; }
+
+/* Cartas de lotería (components/brand/Loteria.tsx).
+   Los atributos fill/stroke nombran una tinta; aquí se resuelven con las variables de la carta. */
+.loteria [fill='tinta'], .frijol [fill='tinta'] { fill: var(--card-ink); }
+.frijol [fill='frijol'] { fill: var(--card-frijol); }
+.frijol [stroke='frijol-brillo'] { stroke: var(--card-frijol-brillo); }
+.frijol [stroke='tinta'] { stroke: var(--card-ink); }
+.loteria [fill='papel'] { fill: var(--card-paper); }
+.loteria [fill='rojo'] { fill: var(--card-rojo); }
+.loteria [fill='azul'] { fill: var(--card-azul); }
+.loteria [fill='verde'] { fill: var(--card-verde); }
+.loteria [fill='mostaza'] { fill: var(--card-mostaza); }
+.loteria [stroke='tinta'] { stroke: var(--card-ink); }
+.loteria [stroke='papel'] { stroke: var(--card-paper); }
+.loteria [stroke='rojo'] { stroke: var(--card-rojo); }
+.loteria [stroke='azul'] { stroke: var(--card-azul); }
+.loteria [stroke='verde'] { stroke: var(--card-verde); }
+.loteria [stroke='mostaza'] { stroke: var(--card-mostaza); }
+.loteria [stroke='halo'] { stroke: var(--card-halo); }
+.foil-stop-light { stop-color: var(--foil-light); }
+.foil-stop { stop-color: var(--foil); }
+.foil-stop-deep { stop-color: var(--foil-deep); }
+
+/* Colocada a mano: cada carta trae su inclinación (--tilt). Al pasar el mouse o tocarla, se levanta
+   y gira un poco, como si la tomaras de la baraja. */
+svg.loteria {
+  display: block; width: 100%; height: auto; overflow: visible;
+  rotate: var(--tilt, 0deg); filter: var(--card-shadow);
+  transition: rotate 0.35s cubic-bezier(0.16, 1, 0.3, 1), translate 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease;
+}
+svg.loteria:hover, svg.loteria:active {
+  translate: 0 -8px; rotate: calc(var(--tilt, 0deg) - 3deg); filter: var(--card-shadow-lift);
+}
+@media (prefers-reduced-motion: reduce) { svg.loteria { transition: none; } }
+
+.loteria-number { font-family: var(--font-display); font-size: 10.5px; font-weight: 700; }
+.loteria-name { font-family: var(--font-display); font-size: 10px; font-weight: 700; letter-spacing: 0.08em; }
+.loteria-figure { font-family: var(--font-display); font-size: 36px; font-weight: 900; }
 
 /* Barra superior del panel */
 .topbar {
@@ -191,20 +277,20 @@ input:focus-visible, select:focus-visible, textarea:focus-visible {
 button:focus-visible, .button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .actions { display: flex; gap: 8px; flex-wrap: wrap; }
 
-/* Botones: dorado sólido (principal), contorno (secundario) */
+/* Botones: tinta sólida del acento (principal), contorno (secundario). Esquinas de boleto impreso. */
 button, .button {
   font: inherit; font-size: 0.925rem; font-weight: 600; padding: 9px 18px; cursor: pointer;
-  border: 1px solid transparent; border-radius: 999px;
-  background: var(--accent); color: var(--on-accent); white-space: nowrap;
+  border: 1px solid transparent; border-radius: 6px;
+  background: var(--primary); color: var(--on-primary); white-space: nowrap;
   text-decoration: none; display: inline-block; line-height: 1.45; text-align: center;
   transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.15s, box-shadow 0.15s;
 }
-button:hover:not(:disabled), .button:hover { background: var(--accent-strong); }
-:root[data-theme='dark'] button:not(.secondary):not(.danger):not(.link):not(.icon-button):not(.chip):hover:not(:disabled) { color: var(--on-accent); }
+/* Los botones de las invitaciones (.tpl) usan los colores del cliente, no el hover dorado del panel. */
+/* :where() deja esta regla con poca especificidad: los estilos de botón (link, secondary, danger…) ganan con su propio hover. */
+button:hover:not(:disabled):where(:not(.tpl button)), .button:hover { background: var(--primary-strong); }
+button:hover:not(:disabled):where(:not(.secondary, .danger, .link, .icon-button, .chip, .tpl button)) { color: var(--on-primary); }
 button:active:not(:disabled), .button:active { transform: translateY(1px); }
 button:disabled { opacity: 0.55; cursor: default; }
-.button-gold { background: var(--gold); color: #1d1610; box-shadow: 0 8px 24px -10px rgb(168 131 79 / 0.8); }
-.button-gold:hover { background: var(--gold); filter: brightness(1.05); }
 button.secondary, .button.secondary { background: transparent; color: var(--text); border-color: var(--border); }
 button.secondary:hover:not(:disabled), .button.secondary:hover { background: var(--surface-2); border-color: color-mix(in srgb, var(--accent) 50%, var(--border)); }
 button.danger { background: transparent; color: var(--error); border-color: var(--border); }
@@ -221,7 +307,7 @@ button.danger-solid:hover:not(:disabled) { background: color-mix(in srgb, var(--
   width: min(440px, calc(100vw - 32px)); padding: 0; border: 1px solid var(--border); border-radius: var(--radius);
   background: var(--surface); color: var(--text); box-shadow: var(--shadow);
 }
-.confirm-dialog::backdrop { background: rgb(18 14 20 / 0.45); backdrop-filter: blur(3px); }
+.confirm-dialog::backdrop { background: rgb(22 17 15 / 0.45); backdrop-filter: blur(3px); }
 .confirm-dialog[open] { animation: confirm-in 0.16s ease-out; }
 @keyframes confirm-in { from { opacity: 0; transform: translateY(8px) scale(0.98); } }
 @media (prefers-reduced-motion: reduce) { .confirm-dialog[open] { animation: none; } }
@@ -336,7 +422,13 @@ td.phone { white-space: nowrap; }
 
 .itinerary-row { display: grid; grid-template-columns: 110px 1fr auto; gap: 6px; }
 
-.template-picker { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.template-picker { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+/* Galería de diseños del diseñador: agrupada por estructura, con scroll propio para no alargar el panel */
+.design-picker { display: grid; gap: 14px; max-height: 460px; overflow-y: auto; padding-right: 4px; overscroll-behavior: contain; }
+.design-picker-group { display: grid; gap: 6px; }
+.design-picker-title { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; }
+.design-filters { display: flex; flex-wrap: wrap; gap: 6px; }
+.design-filters .chip[aria-pressed='true'] { background: var(--text); color: var(--bg); border-color: var(--text); }
 .template-option {
   display: grid; gap: 4px; text-align: left; white-space: normal; align-content: start; justify-items: start;
   background: transparent; color: var(--text); border: 1px solid var(--border); padding: 12px;
@@ -368,14 +460,32 @@ td.phone { white-space: nowrap; }
   .design-layout[data-tab='preview'] .design-controls { display: none; }
   .design-preview { position: static; }
   .phone-frame { height: auto; max-height: none; border-width: 0; border-radius: 12px; }
-  .template-picker { grid-template-columns: 1fr; }
+  .template-picker { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 /* --- Página pública de la invitación --- */
-.public-invitation { min-height: 100vh; display: grid; grid-template-rows: auto 1fr; }
+.public-invitation { min-height: 100vh; display: grid; grid-template-rows: auto 1fr; background: var(--tpl-bg, var(--bg)); }
+/* En tablet y computadora la invitación se presenta como una tarjeta sobre un fondo un poco más profundo
+   del mismo color, en vez de una columna de celular estirada en una página vacía. */
+@media (min-width: 720px) and (min-height: 560px) {
+  .public-invitation { background: color-mix(in srgb, var(--tpl-bg) 88%, var(--tpl-primary)); }
+  .public-invitation > .tpl {
+    /* Portada más baja: en una pantalla ancha los nombres y la fecha deben verse sin desplazarse. */
+    --tpl-cover-h: 44svh;
+    width: min(660px, 100% - 64px);
+    margin: 56px auto 72px;
+    padding: 64px 48px 72px;
+    min-height: auto;
+    align-self: start;
+    border-radius: 4px;
+    box-shadow:
+      0 1px 2px rgb(0 0 0 / 0.06),
+      0 28px 60px -24px color-mix(in srgb, var(--tpl-primary) 45%, transparent);
+  }
+}
 .preview-banner {
   position: sticky; top: 0; z-index: 10; text-align: center; padding: 8px 16px;
-  background: #3d3846; color: #fff; font-size: 0.85rem;
+  background: var(--text); color: var(--bg); font-size: 0.85rem;
 }
 
 /* --- Confirmaciones en el panel --- */
@@ -426,7 +536,7 @@ td.phone { white-space: nowrap; }
 }
 .connection-bar .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ok); flex: none; align-self: center; }
 .connection-bar.offline { background: var(--warn-soft); font-weight: 600; }
-.connection-bar.offline .dot { background: #d29922; }
+.connection-bar.offline .dot { background: var(--warn); }
 .result-offline { margin: 0; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
 .logout { justify-self: center; margin-top: 8px; }
 
@@ -554,6 +664,8 @@ button.big { padding: 12px 16px; font-size: 1.05rem; }
 
 /* Lista para la puerta (imprimible) */
 .print-heading { display: grid; gap: 2px; margin: 8px 0 12px; }
+.print-logo { display: none; }
+@media print { .print-logo { display: block; margin-bottom: 6px; } }
 .print-heading h2 { margin: 0; font-family: var(--font-display); font-size: 1.6rem; }
 .print-heading p { margin: 0; }
 .print-table th, .print-table td { padding: 6px 8px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; }
