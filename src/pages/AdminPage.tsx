@@ -11,6 +11,7 @@ import {
   getAccount,
   getVenueEvents,
   getVenues,
+  partnerLabels,
   joinUrl,
   reactivateVenue,
   removeVenueMember,
@@ -20,6 +21,7 @@ import {
   updateVenue,
   type AdminEvent,
   type CreatedLink,
+  type PartnerKind,
   type SaveVenue,
   type Venue,
 } from '../api/venues'
@@ -44,14 +46,14 @@ export default function AdminPage() {
       <div className="page-header">
         <div>
           <p className="eyebrow">Administración</p>
-          <h1>Salones con convenio</h1>
+          <h1>Convenios</h1>
         </div>
-        {!creating && <button onClick={() => setCreating(true)}>+ Nuevo salón</button>}
+        {!creating && <button onClick={() => setCreating(true)}>+ Nuevo convenio</button>}
       </div>
 
       {creating && (
         <section className="card">
-          <h2>Nuevo salón</h2>
+          <h2>Nuevo convenio</h2>
           <VenueForm onDone={() => setCreating(false)} />
         </section>
       )}
@@ -59,7 +61,7 @@ export default function AdminPage() {
       {venues.isPending && <p>Cargando…</p>}
       {venues.isError && <p className="error">{venues.error.message}</p>}
       {venues.data?.length === 0 && !creating && (
-        <p className="muted">Aún no hay salones. Da de alta el primero con las fechas de su convenio.</p>
+        <p className="muted">Aún no hay convenios. Da de alta el primero (un salón o un organizador de eventos) con las fechas de su convenio.</p>
       )}
       {venues.data?.map((v) => (
         <VenueCard key={v.id} venue={v} />
@@ -79,6 +81,7 @@ function VenueCard({ venue }: { venue: Venue }) {
   const [copied, setCopied] = useState(false)
   const [terminating, setTerminating] = useState(false)
   const [reason, setReason] = useState('')
+  const p = partnerLabels[venue.kind]
 
   const events = useQuery({
     queryKey: ['admin-venue-events', venue.id],
@@ -121,7 +124,7 @@ function VenueCard({ venue }: { venue: Venue }) {
     )
 
   const inviteMessage = invite
-    ? `Hola, este es tu acceso a Vitela como personal de ${venue.name}. Ábrelo, inicia sesión o crea tu cuenta y acepta: ${joinUrl(invite.token)}`
+    ? `Hola, este es tu acceso a Vitela como ${venue.kind === 'Planner' ? 'parte del equipo' : 'personal'} de ${venue.name}. Ábrelo, inicia sesión o crea tu cuenta y acepta: ${joinUrl(invite.token)}`
     : ''
 
   return (
@@ -130,7 +133,7 @@ function VenueCard({ venue }: { venue: Venue }) {
         <div>
           <h2>{venue.name}</h2>
           <p className="muted small">
-            {agreementPeriod(venue.agreementStartsOn, venue.agreementEndsOn)}
+            {p.title} · {agreementPeriod(venue.agreementStartsOn, venue.agreementEndsOn)}
             {venue.contactName && ` · ${venue.contactName}`}
             {venue.phone && ` · ${venue.phone}`}
           </p>
@@ -148,9 +151,11 @@ function VenueCard({ venue }: { venue: Venue }) {
       </div>
 
       <div>
-        <h3 className="small-heading">Personal ({venue.members.length})</h3>
+        <h3 className="small-heading">
+          {venue.kind === 'Planner' ? 'Equipo' : 'Personal'} ({venue.members.length})
+        </h3>
         {venue.members.length === 0 ? (
-          <p className="muted small">Nadie del salón se ha unido todavía. Genera un link de acceso y envíaselo.</p>
+          <p className="muted small">Nadie del {p.noun} se ha unido todavía. Genera un link de acceso y envíaselo.</p>
         ) : (
           <ul className="staff-list">
             {venue.members.map((m) => (
@@ -182,7 +187,7 @@ function VenueCard({ venue }: { venue: Venue }) {
       {invite && (
         <div className="pin-box">
           <span className="small">
-            Link para una persona del salón (un solo uso, vence el {formatDateTime(invite.expiresAt)}):
+            Link para una persona del {p.noun} (un solo uso, vence el {formatDateTime(invite.expiresAt)}):
           </span>
           <code className="staff-link">{joinUrl(invite.token)}</code>
           <div className="actions">
@@ -236,21 +241,21 @@ function VenueCard({ venue }: { venue: Venue }) {
               if (
                 await confirm({
                   title: `¿Eliminar ${venue.name}?`,
-                  message: 'Se borran el salón, su personal y sus links de acceso. No se puede deshacer.',
-                  confirmLabel: 'Eliminar salón',
+                  message: `Se borran el ${p.noun}, su ${p.team} y sus links de acceso. No se puede deshacer.`,
+                  confirmLabel: `Eliminar ${p.noun}`,
                   danger: true,
                 })
               )
                 remove.mutate()
             }}
           >
-            Eliminar salón
+            Eliminar {p.noun}
           </button>
         )}
       </div>
       {venue.eventCount > 0 && venue.status !== 'Terminated' && (
         <p className="muted small">
-          Un salón con eventos no se puede eliminar (se conserva su historial). Si el convenio se acaba, termínalo.
+          Un {p.noun} con eventos no se puede eliminar (se conserva su historial). Si el convenio se acaba, termínalo.
         </p>
       )}
 
@@ -264,8 +269,8 @@ function VenueCard({ venue }: { venue: Venue }) {
         >
           <strong>Terminar el convenio de {venue.name}</strong>
           <span className="small">
-            A partir de ahora el salón ya no podrá dar de alta eventos ni cambiar paquetes por convenio. Los eventos que
-            ya creó siguen funcionando y su personal los conserva. Puedes reactivarlo después.
+            A partir de ahora el {p.noun} ya no podrá dar de alta eventos ni cambiar paquetes por convenio. Los eventos que
+            ya creó siguen funcionando y su {p.team} los conserva. Puedes reactivarlo después.
           </span>
           <label>
             Motivo (opcional)
@@ -273,7 +278,7 @@ function VenueCard({ venue }: { venue: Venue }) {
               value={reason}
               onChange={(e) => setReason(e.target.value)}
               maxLength={500}
-              placeholder="El salón canceló el convenio"
+              placeholder={`El ${p.noun} canceló el convenio`}
             />
           </label>
           <div className="actions">
@@ -293,7 +298,7 @@ function VenueCard({ venue }: { venue: Venue }) {
       {showEvents && (
         <div className="table-wrap">
           {events.isPending && <p className="muted">Cargando…</p>}
-          {events.data?.length === 0 && <p className="muted small">El salón no ha dado de alta eventos.</p>}
+          {events.data?.length === 0 && <p className="muted small">El {p.noun} no ha dado de alta eventos.</p>}
           {events.data && events.data.length > 0 && (
             <table>
               <thead>
@@ -321,7 +326,7 @@ function VenueCard({ venue }: { venue: Venue }) {
             </table>
           )}
           {events.data && events.data.length > 0 && (
-            <p className="muted small">{plural(events.data.length, 'evento', 'eventos')} dados de alta por el salón.</p>
+            <p className="muted small">{plural(events.data.length, 'evento', 'eventos')} dados de alta por el {p.noun}.</p>
           )}
         </div>
       )}
@@ -360,6 +365,7 @@ const endAfterMonths = (start: string, months: number) => {
 
 function VenueForm({ venue, onDone }: { venue?: Venue; onDone: () => void }) {
   const queryClient = useQueryClient()
+  const [kind, setKind] = useState<PartnerKind>(venue?.kind ?? 'Venue')
   const [name, setName] = useState(venue?.name ?? '')
   const [contactName, setContactName] = useState(venue?.contactName ?? '')
   const [phone, setPhone] = useState(venue?.phone ?? '')
@@ -389,6 +395,7 @@ function VenueForm({ venue, onDone }: { venue?: Venue; onDone: () => void }) {
   const submit = (e: FormEvent) => {
     e.preventDefault()
     save.mutate({
+      kind,
       name,
       contactName: contactName || null,
       phone: phone || null,
@@ -401,7 +408,14 @@ function VenueForm({ venue, onDone }: { venue?: Venue; onDone: () => void }) {
   return (
     <form onSubmit={submit} className="form grid-2">
       <label className="span-2">
-        Nombre del salón
+        Tipo de convenio
+        <select value={kind} onChange={(e) => setKind(e.target.value as PartnerKind)}>
+          <option value="Venue">Salón de eventos</option>
+          <option value="Planner">Organizador de eventos (wedding planner)</option>
+        </select>
+      </label>
+      <label className="span-2">
+        {kind === 'Planner' ? 'Nombre del organizador' : 'Nombre del salón'}
         <input value={name} onChange={(e) => setName(e.target.value)} required maxLength={200} />
       </label>
       <label>
@@ -434,7 +448,7 @@ function VenueForm({ venue, onDone }: { venue?: Venue; onDone: () => void }) {
       ) : (
         <p className="muted small span-2">
           {endsOn
-            ? `El convenio termina el ${formatDateOnly(endsOn)} (último día en que el salón puede dar de alta eventos).`
+            ? `El convenio termina el ${formatDateOnly(endsOn)} (último día en que el ${partnerLabels[kind].noun} puede dar de alta eventos).`
             : 'Sin fecha de término: sigue vigente hasta que lo termines desde aquí.'}
         </p>
       )}
@@ -545,7 +559,7 @@ function CustomLimitRow({ event, search }: { event: AdminEvent; search: string }
           <strong>{event.title}</strong>
           <p className="muted small" style={{ margin: 0 }}>
             {formatDateTime(event.startsAt)} · {eventStatusLabels[event.status]} · {event.ownerEmail}
-            {event.venueName && <> · Salón {event.venueName}</>}
+            {event.venueName && <> · Convenio con {event.venueName}</>}
           </p>
           <p className="small" style={{ margin: '4px 0 0' }}>
             {packageLabel} · {plural(event.totalPasses, 'invitado registrado', 'invitados registrados')}

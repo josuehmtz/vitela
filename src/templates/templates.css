@@ -316,3 +316,14 @@
 .tpl-deco .tpl-button { border-radius: 0; letter-spacing: 0.2em; }
 .tpl-deco .tpl-cover { border-radius: 0; border: 1px solid var(--tpl-primary); padding: 6px; outline: 1px solid var(--tpl-line); outline-offset: 4px; }
 .tpl-deco .tpl-form input, .tpl-deco .tpl-form select, .tpl-deco .tpl-form textarea { background: color-mix(in srgb, var(--tpl-bg) 85%, white); }
+
+/* Ceremonia y recepción en lugares distintos */
+.tpl-places { display: grid; gap: 22px; width: 100%; }
+.tpl-place { display: grid; gap: 4px; justify-items: center; }
+.tpl-moderna .tpl-place { justify-items: start; }
+.tpl-place + .tpl-place { padding-top: 20px; border-top: 1px solid var(--tpl-line); }
+.tpl-place-label {
+  margin-bottom: 2px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--tpl-ink);
+}
+.tpl-place-label span { letter-spacing: 0.05em; text-transform: none; }

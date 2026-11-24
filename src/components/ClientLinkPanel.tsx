@@ -42,7 +42,7 @@ export default function ClientLinkPanel({ eventId, eventTitle, managedBy, client
         <h2>Cliente</h2>
         <p className="muted small">
           Aún no hay un cliente vinculado. Genera un link y envíaselo: al abrirlo, inicia sesión o crea su cuenta y
-          queda como dueño del evento. Tu salón conserva el acceso completo.
+          queda como dueño del evento. Tu equipo conserva el acceso completo.
         </p>
       </div>
 

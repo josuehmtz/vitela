@@ -19,6 +19,14 @@ export default function EventForm({ initial, submitLabel, pending, error, onSubm
   const [venueAddress, setVenueAddress] = useState(initial?.venueAddress ?? '')
   const [mapsUrl, setMapsUrl] = useState(initial?.mapsUrl ?? '')
   const [rsvpDeadline, setRsvpDeadline] = useState(toLocalInput(initial?.rsvpDeadline))
+  // Ceremonia en otro lugar (iglesia, juzgado, jardín…). Opcional.
+  const [hasCeremony, setHasCeremony] = useState(
+    Boolean(initial?.ceremonyName || initial?.ceremonyAddress || initial?.ceremonyMapsUrl || initial?.ceremonyStartsAt),
+  )
+  const [ceremonyName, setCeremonyName] = useState(initial?.ceremonyName ?? '')
+  const [ceremonyAddress, setCeremonyAddress] = useState(initial?.ceremonyAddress ?? '')
+  const [ceremonyMapsUrl, setCeremonyMapsUrl] = useState(initial?.ceremonyMapsUrl ?? '')
+  const [ceremonyStartsAt, setCeremonyStartsAt] = useState(toLocalInput(initial?.ceremonyStartsAt))
 
   const submit = (e: FormEvent) => {
     e.preventDefault()
@@ -30,6 +38,10 @@ export default function EventForm({ initial, submitLabel, pending, error, onSubm
       venueAddress: venueAddress || null,
       mapsUrl: mapsUrl || null,
       rsvpDeadline: fromLocalInput(rsvpDeadline),
+      ceremonyName: hasCeremony ? ceremonyName || null : null,
+      ceremonyAddress: hasCeremony ? ceremonyAddress || null : null,
+      ceremonyMapsUrl: hasCeremony ? ceremonyMapsUrl || null : null,
+      ceremonyStartsAt: hasCeremony ? fromLocalInput(ceremonyStartsAt) : null,
     })
   }
 
@@ -54,7 +66,7 @@ export default function EventForm({ initial, submitLabel, pending, error, onSubm
         <input type="datetime-local" value={startsAt} onChange={(e) => setStartsAt(e.target.value)} required />
       </label>
       <label>
-        Lugar
+        {hasCeremony ? 'Lugar de la recepción' : 'Lugar'}
         <input value={venueName} onChange={(e) => setVenueName(e.target.value)} placeholder="Hacienda Los Arcos" maxLength={200} />
       </label>
       <label>
@@ -69,6 +81,31 @@ export default function EventForm({ initial, submitLabel, pending, error, onSubm
         Link de Google Maps
         <input type="url" value={mapsUrl} onChange={(e) => setMapsUrl(e.target.value)} placeholder="https://maps.app.goo.gl/..." maxLength={500} />
       </label>
+      <label className="toggle span-2">
+        <input type="checkbox" checked={hasCeremony} onChange={(e) => setHasCeremony(e.target.checked)} />
+        La ceremonia es en otro lugar (iglesia, juzgado…)
+      </label>
+      {hasCeremony && (
+        <fieldset className="span-2 form grid-2 ceremony-fields">
+          <legend>Ceremonia</legend>
+          <label>
+            Lugar de la ceremonia
+            <input value={ceremonyName} onChange={(e) => setCeremonyName(e.target.value)} placeholder="Parroquia de San Juan Bautista" maxLength={200} />
+          </label>
+          <label>
+            Hora de la ceremonia
+            <input type="datetime-local" value={ceremonyStartsAt} onChange={(e) => setCeremonyStartsAt(e.target.value)} />
+          </label>
+          <label className="span-2">
+            Dirección de la ceremonia
+            <input value={ceremonyAddress} onChange={(e) => setCeremonyAddress(e.target.value)} maxLength={300} />
+          </label>
+          <label className="span-2">
+            Link de Google Maps de la ceremonia
+            <input type="url" value={ceremonyMapsUrl} onChange={(e) => setCeremonyMapsUrl(e.target.value)} placeholder="https://maps.app.goo.gl/..." maxLength={500} />
+          </label>
+        </fieldset>
+      )}
       {error && <p className="error span-2">{error}</p>}
       <div className="actions span-2">
         <button type="submit" disabled={pending}>

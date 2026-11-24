@@ -11,8 +11,24 @@ export const agreementStatusLabels: Record<AgreementStatus, string> = {
   Terminated: 'Terminado',
 }
 
+/** Con quién es el convenio. Las reglas son las mismas; solo cambia cómo se nombra. */
+export type PartnerKind = 'Venue' | 'Planner'
+
+export const partnerLabels: Record<PartnerKind, {
+  /** "Salón de eventos" / "Organizador de eventos" */
+  title: string
+  /** "salón" / "organizador" */
+  noun: string
+  /** "personal" / "equipo" */
+  team: string
+}> = {
+  Venue: { title: 'Salón de eventos', noun: 'salón', team: 'personal' },
+  Planner: { title: 'Organizador de eventos', noun: 'organizador', team: 'equipo' },
+}
+
 export interface MyVenue {
   id: string
+  kind: PartnerKind
   name: string
   agreementStartsOn: string
   /** null = por tiempo indefinido. */
@@ -53,6 +69,8 @@ export interface AccessLinkInfo {
   name: string
   /** Por qué ya no se puede usar (usado o expirado), o null. */
   problem: string | null
+  /** Tipo del salón u organizador detrás del link. */
+  partnerKind: PartnerKind | null
 }
 
 export const getAccessLink = (token: string) => api<AccessLinkInfo>(`/access-links/${encodeURIComponent(token)}`)
@@ -70,6 +88,7 @@ export interface VenueMember {
 
 export interface Venue {
   id: string
+  kind: PartnerKind
   name: string
   contactName: string | null
   phone: string | null
@@ -84,6 +103,7 @@ export interface Venue {
 }
 
 export interface SaveVenue {
+  kind: PartnerKind
   name: string
   contactName: string | null
   phone: string | null

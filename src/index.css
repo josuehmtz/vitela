@@ -420,6 +420,8 @@ td.phone { white-space: nowrap; }
 .photo-grid-actions button { padding: 2px 8px; min-width: 0; }
 .toggle { display: flex !important; align-items: center; gap: 8px; cursor: pointer; }
 .toggle input { width: 18px; height: 18px; accent-color: var(--accent); }
+.ceremony-fields { margin: 0; padding: 14px 16px 16px; border: 1px solid var(--hairline); border-radius: var(--radius-sm); }
+.ceremony-fields legend { padding: 0 6px; font-weight: 600; font-size: 0.9rem; }
 
 .color-field { display: grid; justify-items: start; gap: 4px; font-size: 0.85rem; }
 .color-field input[type='color'] { width: 100%; height: 40px; padding: 2px; cursor: pointer; }

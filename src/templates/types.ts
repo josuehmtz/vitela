@@ -46,6 +46,11 @@ export interface TemplateEvent {
   venueAddress: string | null
   mapsUrl: string | null
   rsvpDeadline: string | null
+  /** Ceremonia en otro lugar (iglesia, juzgado…): opcional. */
+  ceremonyName?: string | null
+  ceremonyAddress?: string | null
+  ceremonyMapsUrl?: string | null
+  ceremonyStartsAt?: string | null
 }
 
 export interface TemplateGuest {

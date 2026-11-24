@@ -18,7 +18,7 @@ const inMonths = (m: number, hour: number) => {
 /** Evento de ejemplo según el tipo de fiesta que se está viendo. */
 const samples: Record<EventType, { event: TemplateEvent; guest: string; passes: number }> = {
   Wedding: {
-    event: { title: 'Valeria & Tomás', type: 'Wedding', startsAt: inMonths(6, 18), venueName: 'Hacienda Los Arcángeles', venueAddress: 'San Miguel de Allende, Gto.', mapsUrl: null, rsvpDeadline: null },
+    event: { title: 'Valeria & Tomás', type: 'Wedding', startsAt: inMonths(6, 18), venueName: 'Hacienda Los Arcángeles', venueAddress: 'San Miguel de Allende, Gto.', mapsUrl: null, rsvpDeadline: null, ceremonyName: 'Parroquia de San Miguel Arcángel', ceremonyAddress: 'Centro, San Miguel de Allende', ceremonyStartsAt: inMonths(6, 17) },
     guest: 'Familia Robles',
     passes: 4,
   },
